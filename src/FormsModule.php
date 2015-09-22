@@ -2,6 +2,14 @@
 
 use Anomaly\Streams\Platform\Addon\Module\Module;
 
+/**
+ * Class FormsModule
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\FormsModule
+ */
 class FormsModule extends Module
 {
 
@@ -10,7 +18,7 @@ class FormsModule extends Module
      *
      * @var string
      */
-    protected $icon = 'addon';
+    protected $icon = 'list-alt';
 
     /**
      * The module sections.
@@ -18,7 +26,20 @@ class FormsModule extends Module
      * @var array
      */
     protected $sections = [
-        'example'
+        'forms'  => [
+            'buttons' => [
+                'new_form'
+            ]
+        ],
+        'fields' => [
+            'buttons' => [
+                'new_field' => [
+                    'data-toggle' => 'modal',
+                    'data-target' => '#modal',
+                    'href'        => 'admin/forms/fields/choose'
+                ]
+            ]
+        ]
     ];
 
 }

@@ -3,5 +3,9 @@
 return [
     'title'       => 'Forms',
     'name'        => 'Forms Module',
-    'description' => ''
+    'description' => '',
+    'section'     => [
+        'forms'  => 'Forms',
+        'fields' => 'Fields'
+    ]
 ];
