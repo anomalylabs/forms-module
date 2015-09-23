@@ -7,6 +7,9 @@ return [
     'form_slug'                => [
         'name' => 'Slug'
     ],
+    'handler'                  => [
+        'name' => 'Form'
+    ],
     'confirmation_message'     => [
         'name' => 'Confirmation Message'
     ],

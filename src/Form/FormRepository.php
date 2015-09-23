@@ -1,5 +1,6 @@
 <?php namespace Anomaly\FormsModule\Form;
 
+use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Entry\EntryRepository;
 
@@ -29,5 +30,16 @@ class FormRepository extends EntryRepository implements FormRepositoryInterface
     public function __construct(FormModel $model)
     {
         $this->model = $model;
+    }
+
+    /**
+     * Find a form by it's slug.
+     *
+     * @param $slug
+     * @return null|FormInterface
+     */
+    public function findBySlug($slug)
+    {
+        return $this->model->where('form_slug', $slug)->first();
     }
 }

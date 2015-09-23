@@ -26,6 +26,7 @@ class FormFormBuilder extends FormBuilder
                     'fields' => [
                         'form_name',
                         'form_slug',
+                        'handler',
                         'confirmation_message',
                         'confirmation_redirect'
                     ]

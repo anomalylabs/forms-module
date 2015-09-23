@@ -28,6 +28,7 @@ class FormTableBuilder extends TableBuilder
     protected $columns = [
         'form_name',
         'form_slug',
+        'entry.handler.title',
         'entry.autoresponder.icon'
     ];
 
@@ -38,6 +39,7 @@ class FormTableBuilder extends TableBuilder
      */
     protected $buttons = [
         'edit',
+        'entries',
         'assignments'
     ];
 

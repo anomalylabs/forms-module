@@ -33,4 +33,34 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     {
         return $this->form_slug;
     }
+
+    /**
+     * Get the send to emails.
+     *
+     * @return array
+     */
+    public function getSendTo()
+    {
+        return $this->send_to;
+    }
+
+    /**
+     * Get the from email.
+     *
+     * @return string
+     */
+    public function getFromEmail()
+    {
+        return $this->from_email;
+    }
+
+    /**
+     * Get the from name.
+     *
+     * @return string
+     */
+    public function getFromName()
+    {
+        return $this->from_name;
+    }
 }

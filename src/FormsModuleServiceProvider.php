@@ -14,6 +14,15 @@ class FormsModuleServiceProvider extends AddonServiceProvider
 {
 
     /**
+     * The addon plugins.
+     *
+     * @var array
+     */
+    protected $plugins = [
+        'Anomaly\FormsModule\FormsModulePlugin'
+    ];
+
+    /**
      * The addon routes.
      *
      * @var array
@@ -22,6 +31,7 @@ class FormsModuleServiceProvider extends AddonServiceProvider
         'admin/forms'                                    => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@index',
         'admin/forms/create'                             => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@create',
         'admin/forms/edit/{id}'                          => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@edit',
+        'admin/forms/entries/{id}'                       => 'Anomaly\FormsModule\Http\Controller\Admin\EntriesController@index',
         'admin/forms/fields'                             => 'Anomaly\FormsModule\Http\Controller\Admin\FieldsController@index',
         'admin/forms/fields/choose'                      => 'Anomaly\FormsModule\Http\Controller\Admin\FieldsController@choose',
         'admin/forms/fields/create'                      => 'Anomaly\FormsModule\Http\Controller\Admin\FieldsController@create',
