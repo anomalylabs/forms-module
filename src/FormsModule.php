@@ -26,12 +26,22 @@ class FormsModule extends Module
      * @var array
      */
     protected $sections = [
-        'forms'  => [
+        'forms'       => [
             'buttons' => [
                 'new_form'
             ]
         ],
-        'fields' => [
+        'assignments' => [
+            'parent'  => 'forms',
+            'buttons' => [
+                'add_field' => [
+                    'data-toggle' => 'modal',
+                    'data-target' => '#modal',
+                    'href'        => 'admin/forms/assignments/{request.route.parameters.id}/choose'
+                ]
+            ]
+        ],
+        'fields'      => [
             'buttons' => [
                 'new_field' => [
                     'data-toggle' => 'modal',

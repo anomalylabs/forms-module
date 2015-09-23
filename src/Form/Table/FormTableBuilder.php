@@ -2,15 +2,16 @@
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
+/**
+ * Class FormTableBuilder
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\FormsModule\Form\Table
+ */
 class FormTableBuilder extends TableBuilder
 {
-
-    /**
-     * The table views.
-     *
-     * @var array|string
-     */
-    protected $views = [];
 
     /**
      * The table filters.
@@ -24,34 +25,29 @@ class FormTableBuilder extends TableBuilder
      *
      * @var array|string
      */
-    protected $columns = [];
+    protected $columns = [
+        'form_name',
+        'form_slug',
+        'entry.autoresponder.icon'
+    ];
 
     /**
      * The table buttons.
      *
      * @var array|string
      */
-    protected $buttons = [];
+    protected $buttons = [
+        'edit',
+        'assignments'
+    ];
 
     /**
      * The table actions.
      *
      * @var array|string
      */
-    protected $actions = [];
-
-    /**
-     * The table options.
-     *
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * The table assets.
-     *
-     * @var array
-     */
-    protected $assets = [];
+    protected $actions = [
+        'delete'
+    ];
 
 }

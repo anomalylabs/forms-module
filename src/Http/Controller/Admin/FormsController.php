@@ -4,6 +4,14 @@ use Anomaly\FormsModule\Form\Form\FormFormBuilder;
 use Anomaly\FormsModule\Form\Table\FormTableBuilder;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
+/**
+ * Class FormsController
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\FormsModule\Http\Controller\Admin
+ */
 class FormsController extends AdminController
 {
 
@@ -33,7 +41,7 @@ class FormsController extends AdminController
      * Edit an existing entry.
      *
      * @param FormFormBuilder $form
-     * @param        $id
+     * @param                 $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(FormFormBuilder $form, $id)
