@@ -76,7 +76,9 @@ class FormsModulePlugin extends Plugin
                     /* @var FormBuilder $builder */
                     $builder = app(FormBuilder::class)->setOption('config', $form);
 
+                    $builder->setActions(['submit']);
                     $builder->setOption('redirect', $form->getConfirmationRedirect());
+                    $builder->setOption('url', 'forms/handle/' . $form->getFormSlug());
 
                     $builder->on(
                         'saving',
