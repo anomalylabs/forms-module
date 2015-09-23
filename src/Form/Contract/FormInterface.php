@@ -14,32 +14,51 @@ interface FormInterface extends EntryInterface
 {
 
     /**
-     * Get the slug.
+     * Get the form slug.
      *
      * @return string
      */
-    public function getSlug();
+    public function getFormSlug();
 
     /**
-     * Get the send to emails.
+     * Get the message send to emails.
      *
      * @return array
      */
-    public function getSendTo();
+    public function getMessageSendTo();
 
     /**
-     * Get the from email.
+     * Get the message from email.
      *
      * @return string
      */
-    public function getFromEmail();
+    public function getMessageFromEmail();
 
     /**
-     * Get the from name.
+     * Get the message from name.
      *
      * @return string
      */
-    public function getFromName();
+    public function getMessageFromName();
 
-    public function getSubject();
+    /**
+     * Get the message subject.
+     *
+     * @return string
+     */
+    public function getMessageSubject();
+
+    /**
+     * Get the confirmation message.
+     *
+     * @return string
+     */
+    public function getConfirmationMessage();
+
+    /**
+     * Get the confirmation redirect.
+     *
+     * @return string
+     */
+    public function getConfirmationRedirect();
 }

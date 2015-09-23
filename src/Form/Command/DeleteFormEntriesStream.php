@@ -39,7 +39,7 @@ class DeleteFormEntriesStream implements SelfHandling
      */
     public function handle(StreamRepositoryInterface $streams)
     {
-        if ($stream = $streams->findBySlugAndNamespace($this->form->getSlug(), 'forms')) {
+        if ($stream = $streams->findBySlugAndNamespace($this->form->getFormSlug(), 'forms')) {
             $streams->delete($stream);
         }
     }

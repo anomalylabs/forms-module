@@ -25,42 +25,72 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     }
 
     /**
-     * Get the slug.
+     * Get the form slug.
      *
      * @return string
      */
-    public function getSlug()
+    public function getFormSlug()
     {
         return $this->form_slug;
     }
 
     /**
-     * Get the send to emails.
+     * Get the message send to emails.
      *
      * @return array
      */
-    public function getSendTo()
+    public function getMessageSendTo()
     {
-        return $this->send_to;
+        return $this->message_send_to;
     }
 
     /**
-     * Get the from email.
+     * Get the message from email.
      *
      * @return string
      */
-    public function getFromEmail()
+    public function getMessageFromEmail()
     {
-        return $this->from_email;
+        return $this->message_from_email;
     }
 
     /**
-     * Get the from name.
+     * Get the message from name.
      *
      * @return string
      */
-    public function getFromName()
+    public function getMessageFromName()
     {
-        return $this->from_name;
+        return $this->message_from_name;
+    }
+
+    /**
+     * Get the message subject.
+     *
+     * @return string
+     */
+    public function getMessageSubject()
+    {
+        return $this->message_subject;
+    }
+
+    /**
+     * Get the confirmation message.
+     *
+     * @return string
+     */
+    public function getConfirmationMessage()
+    {
+        return $this->confirmation_message;
+    }
+
+    /**
+     * Get the confirmation redirect.
+     *
+     * @return string
+     */
+    public function getConfirmationRedirect()
+    {
+        return $this->confirmation_redirect;
     }
 }

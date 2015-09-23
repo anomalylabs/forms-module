@@ -70,12 +70,13 @@ class FormsModulePlugin extends Plugin
 
                     $slug = func_get_arg(0);
 
-                    $form = $this->forms->findBySlug($slug);
-
-                    $stream = $this->streams->findBySlugAndNamespace($form->getSlug(), 'forms');
+                    $form   = $this->forms->findBySlug($slug);
+                    $stream = $this->streams->findBySlugAndNamespace($form->getFormSlug(), 'forms');
 
                     /* @var FormBuilder $builder */
                     $builder = app(FormBuilder::class)->setOption('config', $form);
+
+                    $builder->setOption('redirect', $form->getConfirmationRedirect());
 
                     $builder->on(
                         'saving',

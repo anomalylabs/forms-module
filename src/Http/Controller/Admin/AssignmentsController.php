@@ -36,7 +36,7 @@ class AssignmentsController extends AdminController
         /* @var FormInterface $form */
         $form = $forms->find($id);
 
-        return $table->setStream($streams->findBySlugAndNamespace($form->getSlug(), 'forms'))->render();
+        return $table->setStream($streams->findBySlugAndNamespace($form->getFormSlug(), 'forms'))->render();
     }
 
     /**
@@ -57,7 +57,7 @@ class AssignmentsController extends AdminController
         /* @var FormInterface $form */
         /* @var StreamInterface $group */
         $form   = $forms->find($id);
-        $stream = $streams->findBySlugAndNamespace($form->getSlug(), 'forms');
+        $stream = $streams->findBySlugAndNamespace($form->getFormSlug(), 'forms');
 
         return view(
             'module::ajax/choose_field',
@@ -89,7 +89,7 @@ class AssignmentsController extends AdminController
     ) {
         /* @var FormInterface $form */
         $form   = $forms->find($id);
-        $stream = $streams->findBySlugAndNamespace($form->getSlug(), 'forms');
+        $stream = $streams->findBySlugAndNamespace($form->getFormSlug(), 'forms');
 
         return $builder
             ->setOption('redirect', 'admin/forms/assignments/' . $id)

@@ -2,6 +2,7 @@
 
 use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Anomaly\WysiwygFieldType\WysiwygFieldType;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Mail\Message;
@@ -39,14 +40,17 @@ class SendFormMessage implements SelfHandling
         /* @var FormInterface $config */
         $config = $this->builder->getOption('config');
 
+        /* @var WysiwygFieldType $email */
+        $email = $config->getFieldTypePresenter('message_content');
+
         $mailer->send(
-            $config->getFieldTypePresenter('message_content')->path(),
+            $email->getViewPath(),
             [],
             function (Message $message) use ($config) {
 
-                $message->from($config->getFromEmail(), $config->getFromName());
-                $message->to($config->getSendTo());
-                $message->subject($config->getSubject());
+                $message->from($config->getMessageFromEmail(), $config->getMessageFromName());
+                $message->subject($config->getMessageSubject());
+                $message->to($config->getMessageSendTo());
             }
         );
     }

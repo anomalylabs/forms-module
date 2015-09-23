@@ -33,6 +33,6 @@ class EntriesController extends AdminController
         /* @var FormInterface $form */
         $form = $forms->find($id);
 
-        return $table->setModel($streams->findBySlugAndNamespace($form->getSlug(), 'forms')->getEntryModel())->render();
+        return $table->setModel($streams->findBySlugAndNamespace($form->getFormSlug(), 'forms')->getEntryModel())->render();
     }
 }
