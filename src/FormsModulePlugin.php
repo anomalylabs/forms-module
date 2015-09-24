@@ -89,6 +89,7 @@ class FormsModulePlugin extends Plugin
                         $builder->setModel($stream->getEntryModelName())->make()->getForm()
                     );
                 }
+                , ['is_safe' => ['html']]
             )
         ];
     }

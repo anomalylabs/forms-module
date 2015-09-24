@@ -5,6 +5,7 @@ use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
+use Illuminate\Routing\Redirector;
 
 /**
  * Class FormsController
@@ -17,7 +18,7 @@ use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 class FormsController extends PublicController
 {
 
-    public function handle(FormRepositoryInterface $forms, StreamRepositoryInterface $streams, $form)
+    public function handle(FormRepositoryInterface $forms, StreamRepositoryInterface $streams, Redirector $redirect, $form)
     {
         $form = $forms->findBySlug($form);
 
@@ -28,15 +29,20 @@ class FormsController extends PublicController
 
         $builder->setOption('redirect', $form->getConfirmationRedirect());
         $builder->setOption('url', 'forms/handle/' . $form->getFormSlug());
+        $builder->setOption('success_message', $form->getConfirmationMessage());
 
         $builder->on(
-            'saving',
+            'saved',
             function (FormBuilder $builder) {
                 $this->dispatch(new SendFormMessage($builder));
             }
         );
 
         $builder->setModel($stream->getEntryModelName())->handle();
+
+        if ($builder->hasFormErrors()) {
+            return $redirect->back();
+        }
 
         return $builder->getFormResponse();
     }

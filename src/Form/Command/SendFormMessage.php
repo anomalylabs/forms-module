@@ -1,6 +1,7 @@
 <?php namespace Anomaly\FormsModule\Form\Command;
 
 use Anomaly\FormsModule\Form\Contract\FormInterface;
+use Anomaly\Streams\Platform\Support\Value;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\WysiwygFieldType\WysiwygFieldType;
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -26,7 +27,7 @@ class SendFormMessage implements SelfHandling
     protected $builder;
 
     /**
-     * Create a new SendFormMessage instnce.
+     * Create a new SendFormMessage instance.
      *
      * @param FormBuilder $builder
      */
@@ -35,7 +36,7 @@ class SendFormMessage implements SelfHandling
         $this->builder = $builder;
     }
 
-    public function handle(Mailer $mailer)
+    public function handle(Mailer $mailer, Value $value)
     {
         /* @var FormInterface $config */
         $config = $this->builder->getOption('config');
@@ -46,10 +47,10 @@ class SendFormMessage implements SelfHandling
         $mailer->send(
             $email->getViewPath(),
             [],
-            function (Message $message) use ($config) {
+            function (Message $message) use ($config, $value) {
 
                 $message->from($config->getMessageFromEmail(), $config->getMessageFromName());
-                $message->subject($config->getMessageSubject());
+                $message->subject($value->make($config->getMessageSubject(), $this->builder->getFormEntry(), 'input'));
                 $message->to($config->getMessageSendTo());
             }
         );
