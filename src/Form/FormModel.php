@@ -166,4 +166,84 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     {
         return $this->autoresponder;
     }
+
+    /**
+     * Get the autoresponder send to emails.
+     *
+     * @return array
+     */
+    public function getAutoresponderSendTo()
+    {
+        return $this->autoresponder_send_to;
+    }
+
+    /**
+     * Get the autoresponder from email.
+     *
+     * @return string
+     */
+    public function getAutoresponderFromEmail()
+    {
+        return $this->autoresponder_from_email;
+    }
+
+    /**
+     * Get the autoresponder from name.
+     *
+     * @return string
+     */
+    public function getAutoresponderFromName()
+    {
+        return $this->autoresponder_from_name;
+    }
+
+    /**
+     * Get the reply to email.
+     *
+     * @return string
+     */
+    public function getAutoresponderReplyToEmail()
+    {
+        return $this->autoresponder_reply_to_email;
+    }
+
+    /**
+     * Get the reply to name.
+     *
+     * @return string
+     */
+    public function getAutoresponderReplyToName()
+    {
+        return $this->autoresponder_reply_to_name;
+    }
+
+    /**
+     * Get the autoresponder subject.
+     *
+     * @return string
+     */
+    public function getAutoresponderSubject()
+    {
+        return $this->autoresponder_subject;
+    }
+
+    /**
+     * Get the autoresponder CC emails.
+     *
+     * @return array
+     */
+    public function getAutoresponderCc()
+    {
+        return $this->autoresponder_cc;
+    }
+
+    /**
+     * Get the autoresponder BCC emails.
+     *
+     * @return array
+     */
+    public function getAutoresponderBcc()
+    {
+        return $this->autoresponder_bcc;
+    }
 }

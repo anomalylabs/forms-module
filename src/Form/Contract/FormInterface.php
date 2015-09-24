@@ -112,4 +112,60 @@ interface FormInterface extends EntryInterface
      * @return bool
      */
     public function hasAutoresponder();
+
+    /**
+     * Get the autoresponder send to emails.
+     *
+     * @return array
+     */
+    public function getAutoresponderSendTo();
+
+    /**
+     * Get the autoresponder from email.
+     *
+     * @return string
+     */
+    public function getAutoresponderFromEmail();
+
+    /**
+     * Get the autoresponder from name.
+     *
+     * @return string
+     */
+    public function getAutoresponderFromName();
+
+    /**
+     * Get the reply to email.
+     *
+     * @return string
+     */
+    public function getAutoresponderReplyToEmail();
+
+    /**
+     * Get the reply to name.
+     *
+     * @return string
+     */
+    public function getAutoresponderReplyToName();
+
+    /**
+     * Get the autoresponder subject.
+     *
+     * @return string
+     */
+    public function getAutoresponderSubject();
+
+    /**
+     * Get the autoresponder CC emails.
+     *
+     * @return array
+     */
+    public function getAutoresponderCc();
+
+    /**
+     * Get the autoresponder BCC emails.
+     *
+     * @return array
+     */
+    public function getAutoresponderBcc();
 }

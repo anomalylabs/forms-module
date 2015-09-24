@@ -41,8 +41,9 @@ class CreateFormEntriesStream implements SelfHandling
     {
         $streams->create(
             [
-                'namespace' => 'forms',
-                'slug'      => $this->form->getFormSlug()
+                'namespace'    => 'forms',
+                'slug'         => $this->form->getFormSlug(),
+                'translatable' => true
             ]
         );
     }

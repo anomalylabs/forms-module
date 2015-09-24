@@ -52,14 +52,14 @@ class FormMailer
      */
     public function send(FormInterface $form, FormBuilder $builder)
     {
-        $entry = $builder->getFormEntry();
+        $input = $entry = $builder->getFormEntry();
 
         /* @var WysiwygFieldType $email */
         $email = $form->getFieldType('message_content');
 
         $this->mailer->send(
             $email->getViewPath(),
-            [],
+            compact('input'),
             function (Message $message) use ($form, $entry, $builder) {
 
                 $message->cc($form->getMessageCc());
