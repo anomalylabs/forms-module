@@ -65,10 +65,8 @@ class FormsModulePlugin extends Plugin
     {
         return [
             new \Twig_SimpleFunction(
-                '*_form',
-                function () {
-
-                    $slug = func_get_arg(0);
+                'forms_get',
+                function ($slug) {
 
                     $form   = $this->forms->findBySlug($slug);
                     $stream = $this->streams->findBySlugAndNamespace($form->getFormSlug(), 'forms');

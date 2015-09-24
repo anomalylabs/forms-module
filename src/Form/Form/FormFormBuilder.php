@@ -14,6 +14,18 @@ class FormFormBuilder extends FormBuilder
 {
 
     /**
+     * The form fields.
+     *
+     * @var array
+     */
+    protected $fields = [
+        '*',
+        'form_slug' => [
+            'disabled' => 'edit'
+        ]
+    ];
+
+    /**
      * The form sections.
      *
      * @var array
