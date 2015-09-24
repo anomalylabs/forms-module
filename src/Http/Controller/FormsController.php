@@ -1,10 +1,7 @@
 <?php namespace Anomaly\FormsModule\Http\Controller;
 
-use Anomaly\FormsModule\Form\Command\SendFormMessage;
 use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
-use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
-use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -18,27 +15,23 @@ use Illuminate\Routing\Redirector;
 class FormsController extends PublicController
 {
 
-    public function handle(FormRepositoryInterface $forms, StreamRepositoryInterface $streams, Redirector $redirect, $form)
+    /**
+     * Handle the form POST.
+     *
+     * @param FormRepositoryInterface $forms
+     * @param Redirector              $redirect
+     * @param                         $form
+     * @return \Illuminate\Http\RedirectResponse|null|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function handle(FormRepositoryInterface $forms, Redirector $redirect, $form)
     {
         $form = $forms->findBySlug($form);
 
-        $stream = $streams->findBySlugAndNamespace($form->getFormSlug(), 'forms');
+        $handler = $form->getHandler();
+        $builder = $handler->builder($form);
 
-        /* @var FormBuilder $builder */
-        $builder = app(FormBuilder::class)->setOption('config', $form);
-
-        $builder->setOption('redirect', $form->getConfirmationRedirect());
-        $builder->setOption('url', 'forms/handle/' . $form->getFormSlug());
-        $builder->setOption('success_message', $form->getConfirmationMessage());
-
-        $builder->on(
-            'saved',
-            function (FormBuilder $builder) {
-                $this->dispatch(new SendFormMessage($builder));
-            }
-        );
-
-        $builder->setModel($stream->getEntryModelName())->handle();
+        $builder->handle();
 
         if ($builder->hasFormErrors()) {
             return $redirect->back();
@@ -46,5 +39,4 @@ class FormsController extends PublicController
 
         return $builder->getFormResponse();
     }
-
 }

@@ -33,6 +33,7 @@ class FormsModuleServiceProvider extends AddonServiceProvider
             'uses'   => 'Anomaly\FormsModule\Http\Controller\FormsController@handle',
         ],
         'admin/forms'                                    => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@index',
+        'admin/forms/choose'                             => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@choose',
         'admin/forms/create'                             => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@create',
         'admin/forms/edit/{id}'                          => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@edit',
         'admin/forms/entries/{id}'                       => 'Anomaly\FormsModule\Http\Controller\Admin\EntriesController@index',
@@ -52,7 +53,8 @@ class FormsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        'Anomaly\FormsModule\Form\Contract\FormRepositoryInterface' => 'Anomaly\FormsModule\Form\FormRepository'
+        'Anomaly\FormsModule\Form\Contract\FormRepositoryInterface'                => 'Anomaly\FormsModule\Form\FormRepository',
+        'Anomaly\FormsModule\Form\Handler\Contract\FormHandlerRepositoryInterface' => 'Anomaly\FormsModule\Form\Handler\FormHandlerRepository'
     ];
 
 }

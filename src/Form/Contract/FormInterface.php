@@ -1,6 +1,8 @@
 <?php namespace Anomaly\FormsModule\Form\Contract;
 
+use Anomaly\FormsModule\Form\Handler\Contract\FormHandlerExtensionInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
+use Anomaly\Streams\Platform\Stream\Contract\StreamInterface;
 
 /**
  * Interface FormInterface
@@ -12,6 +14,20 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
  */
 interface FormInterface extends EntryInterface
 {
+
+    /**
+     * Get the handler.
+     *
+     * @return FormHandlerExtensionInterface
+     */
+    public function getHandler();
+
+    /**
+     * Get the form entries stream.
+     *
+     * @return StreamInterface
+     */
+    public function getFormEntriesStream();
 
     /**
      * Get the form slug.
@@ -42,6 +58,20 @@ interface FormInterface extends EntryInterface
     public function getMessageFromName();
 
     /**
+     * Get the reply to email.
+     *
+     * @return string
+     */
+    public function getMessageReplyToEmail();
+
+    /**
+     * Get the reply to name.
+     *
+     * @return string
+     */
+    public function getMessageReplyToName();
+
+    /**
      * Get the message subject.
      *
      * @return string
@@ -49,16 +79,37 @@ interface FormInterface extends EntryInterface
     public function getMessageSubject();
 
     /**
-     * Get the confirmation message.
+     * Get the message CC emails.
      *
-     * @return string
+     * @return array
      */
-    public function getConfirmationMessage();
+    public function getMessageCc();
 
     /**
-     * Get the confirmation redirect.
+     * Get the message BCC emails.
+     *
+     * @return array
+     */
+    public function getMessageBcc();
+
+    /**
+     * Get the success message.
      *
      * @return string
      */
-    public function getConfirmationRedirect();
+    public function getSuccessMessage();
+
+    /**
+     * Get the success redirect.
+     *
+     * @return string
+     */
+    public function getSuccessRedirect();
+
+    /**
+     * Return the autoresponder flag.
+     *
+     * @return bool
+     */
+    public function hasAutoresponder();
 }

@@ -28,7 +28,11 @@ class FormsModule extends Module
     protected $sections = [
         'forms'       => [
             'buttons' => [
-                'new_form'
+                'new_form' => [
+                    'data-toggle' => 'modal',
+                    'data-target' => '#modal',
+                    'href'        => 'admin/forms/choose'
+                ]
             ]
         ],
         'assignments' => [
@@ -39,6 +43,16 @@ class FormsModule extends Module
                     'data-target' => '#modal',
                     'href'        => 'admin/forms/assignments/{request.route.parameters.id}/choose'
                 ]
+            ]
+        ],
+        'actions'     => [
+            'buttons' => [
+                'new_action'
+            ]
+        ],
+        'buttons'     => [
+            'buttons' => [
+                'new_button'
             ]
         ],
         'fields'      => [

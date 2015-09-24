@@ -19,7 +19,8 @@ class AnomalyModuleFormsCreateFormsStream extends Migration
      */
     protected $stream = [
         'slug'         => 'forms',
-        'title_column' => 'form_name'
+        'title_column' => 'form_name',
+        'translatable' => true
     ];
 
     /**
@@ -28,50 +29,71 @@ class AnomalyModuleFormsCreateFormsStream extends Migration
      * @var array
      */
     protected $assignments = [
-        'form_name'          => [
+        'form_name'               => [
             'required' => true
         ],
-        'form_slug'          => [
+        'form_slug'               => [
             'unique'   => true,
             'required' => true
         ],
-        'handler'            => [
+        'handler'                 => [
             'required' => true
         ],
-        'message_layout',
-        'message_content'    => [
+        'message_email_layout',
+        'message_content'         => [
+            'required'     => true,
+            'translatable' => true
+        ],
+        'message_from_name'       => [
+            'required'     => true,
+            'translatable' => true
+        ],
+        'message_from_email'      => [
             'required' => true
         ],
-        'message_from_name'  => [
+        'message_reply_to_name'   => [
             'required' => true
         ],
-        'message_from_email' => [
+        'message_reply_to_email'  => [
             'required' => true
         ],
-        'message_reply_to'   => [
-            'required' => true
+        'message_subject'         => [
+            'required'     => true,
+            'translatable' => true
         ],
-        'message_subject'    => [
-            'required' => true
+        'message_send_to'         => [
+            'required'     => true,
+            'translatable' => true
         ],
-        'message_send_to'    => [
-            'required' => true
+        'message_cc'              => [
+            'translatable' => true
         ],
-        'message_cc',
-        'message_bcc',
+        'message_bcc'             => [
+            'translatable' => true
+        ],
         'include_attachments',
         'autoresponder',
-        'autoresponder_layout',
-        'autoresponder_content',
-        'autoresponder_from_name',
+        'autoresponder_email_layout',
+        'autoresponder_content'   => [
+            'translatable' => true
+        ],
+        'autoresponder_from_name' => [
+            'translatable' => true
+        ],
         'autoresponder_from_email',
         'autoresponder_reply_to',
-        'autoresponder_subject',
+        'autoresponder_subject'   => [
+            'translatable' => true
+        ],
         'autoresponder_send_to',
         'autoresponder_cc',
         'autoresponder_bcc',
-        'confirmation_message',
-        'confirmation_redirect'
+        'success_message'         => [
+            'translatable' => true
+        ],
+        'success_redirect'        => [
+            'translatable' => true
+        ]
     ];
 
 }

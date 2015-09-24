@@ -7,6 +7,8 @@ return [
     'section'     => [
         'forms'       => 'Forms',
         'fields'      => 'Fields',
+        'actions'     => 'Actions',
+        'buttons'     => 'Buttons',
         'assignments' => 'Assignments'
     ]
 ];

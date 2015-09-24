@@ -1,7 +1,9 @@
 <?php namespace Anomaly\FormsModule\Http\Controller\Admin;
 
 use Anomaly\FormsModule\Form\Form\FormFormBuilder;
+use Anomaly\FormsModule\Form\Handler\Contract\FormHandlerRepositoryInterface;
 use Anomaly\FormsModule\Form\Table\FormTableBuilder;
+use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 
 /**
@@ -27,14 +29,26 @@ class FormsController extends AdminController
     }
 
     /**
+     * Choose a form handler for creating a form.
+     *
+     * @param ExtensionCollection $extensions
+     * @return \Illuminate\View\View
+     */
+    public function choose(FormHandlerRepositoryInterface $formHandlers)
+    {
+        return view('module::ajax/choose_form_handler', ['extensions' => $formHandlers->all()]);
+    }
+
+    /**
      * Create a new entry.
      *
-     * @param FormFormBuilder $form
+     * @param FormFormBuilder                $form
+     * @param FormHandlerRepositoryInterface $formHandlers
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create(FormFormBuilder $form)
+    public function create(FormFormBuilder $form, FormHandlerRepositoryInterface $formHandlers)
     {
-        return $form->render();
+        return $form->setFormHandler($formHandlers->get($_GET['handler']))->render();
     }
 
     /**

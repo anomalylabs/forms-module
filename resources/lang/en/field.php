@@ -1,80 +1,80 @@
 <?php
 
 return [
-    'form_name'                => [
+    'form_name'                  => [
         'name' => 'Name'
     ],
-    'form_slug'                => [
+    'form_slug'                  => [
         'name' => 'Slug'
     ],
-    'handler'                  => [
+    'handler'                    => [
         'name' => 'Form'
     ],
-    'confirmation_message'     => [
-        'name' => 'Confirmation Message'
+    'success_message'            => [
+        'name' => 'Success Message'
     ],
-    'confirmation_redirect'    => [
-        'name' => 'Confirmation Redirect'
+    'success_redirect'           => [
+        'name' => 'Success Redirect'
     ],
-    'message_layout'           => [
-        'name' => 'Layout'
+    'message_email_layout'       => [
+        'name' => 'Email Layout'
     ],
-    'message_from_name'        => [
+    'message_from_name'          => [
         'name' => 'From Name'
     ],
-    'message_from_email'       => [
+    'message_from_email'         => [
         'name' => 'From Email'
     ],
-    'message_reply_to'         => [
+    'message_reply_to'           => [
         'name' => 'Reply To'
     ],
-    'message_subject'          => [
+    'message_subject'            => [
         'name' => 'Subject'
     ],
-    'message_send_to'          => [
+    'message_send_to'            => [
         'name' => 'Send To'
     ],
-    'message_cc'               => [
+    'message_cc'                 => [
         'name' => 'CC'
     ],
-    'message_bcc'              => [
+    'message_bcc'                => [
         'name' => 'BCC'
     ],
-    'message_content'          => [
+    'message_content'            => [
         'name' => 'Content'
     ],
-    'include_attachments'      => [
+    'include_attachments'        => [
         'name' => 'Include Attachments'
     ],
-    'autoresponder'            => [
+    'autoresponder'              => [
         'name'  => 'Autoresponder',
         'label' => 'Enable autoresponder?'
     ],
-    'autoresponder_layout'     => [
-        'name' => 'Layout'
+    'autoresponder_email_layout' => [
+        'name' => 'Email Layout'
     ],
-    'autoresponder_from_name'  => [
+    'autoresponder_from_name'    => [
         'name' => 'From Name'
     ],
-    'autoresponder_from_email' => [
+    'autoresponder_from_email'   => [
         'name' => 'From Email'
     ],
-    'autoresponder_reply_to'   => [
+    'autoresponder_reply_to'     => [
         'name' => 'Reply To'
     ],
-    'autoresponder_subject'    => [
+    'autoresponder_subject'      => [
         'name' => 'Subject'
     ],
-    'autoresponder_send_to'    => [
+    'autoresponder_send_to'      => [
         'name' => 'Send To'
     ],
-    'autoresponder_cc'         => [
+    'autoresponder_cc'           => [
         'name' => 'CC'
     ],
-    'autoresponder_bcc'        => [
+    'autoresponder_bcc'          => [
         'name' => 'BCC'
     ],
-    'autoresponder_content'    => [
+    'autoresponder_content'      => [
         'name' => 'Content'
     ],
 ];

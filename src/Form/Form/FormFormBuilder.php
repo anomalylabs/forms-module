@@ -1,5 +1,6 @@
 <?php namespace Anomaly\FormsModule\Form\Form;
 
+use Anomaly\FormsModule\Form\Handler\Contract\FormHandlerExtensionInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
 /**
@@ -14,6 +15,13 @@ class FormFormBuilder extends FormBuilder
 {
 
     /**
+     * The form handler extension.
+     *
+     * @var FormHandlerExtensionInterface
+     */
+    protected $formHandler;
+
+    /**
      * The form fields.
      *
      * @var array
@@ -23,6 +31,15 @@ class FormFormBuilder extends FormBuilder
         'form_slug' => [
             'disabled' => 'edit'
         ]
+    ];
+
+    /**
+     * Skip these fields.
+     *
+     * @var array
+     */
+    protected $skips = [
+        'handler'
     ];
 
     /**
@@ -39,8 +56,8 @@ class FormFormBuilder extends FormBuilder
                         'form_name',
                         'form_slug',
                         'handler',
-                        'confirmation_message',
-                        'confirmation_redirect'
+                        'success_message',
+                        'success_redirect'
                     ]
                 ],
                 'message'       => [
@@ -51,7 +68,7 @@ class FormFormBuilder extends FormBuilder
                         'message_from_email',
                         'message_reply_to',
                         'message_subject',
-                        'message_layout',
+                        'message_email_layout',
                         'message_content',
                         'message_cc',
                         'message_bcc',
@@ -62,7 +79,7 @@ class FormFormBuilder extends FormBuilder
                     'title'  => 'anomaly.module.forms::tab.autoresponder',
                     'fields' => [
                         'autoresponder',
-                        'autoresponder_layout',
+                        'autoresponder_email_layout',
                         'autoresponder_from_name',
                         'autoresponder_reply_to',
                         'autoresponder_subject',
@@ -77,4 +94,50 @@ class FormFormBuilder extends FormBuilder
         ]
     ];
 
+    /**
+     * Fired when builder is ready to build.
+     *
+     * @throws \Exception
+     */
+    public function onReady()
+    {
+        if (!$this->getFormHandler() && !$this->getEntry()) {
+            throw new \Exception('The $formHandler parameter is required when creating a form.');
+        }
+    }
+
+    /**
+     * Fired when form is saving.
+     */
+    public function onSaving()
+    {
+        $entry = $this->getFormEntry();
+
+        if (!$entry->exists) {
+            $entry->handler = $this->getFormHandler();
+        }
+    }
+
+    /**
+     * Get the form handler extension.
+     *
+     * @return FormHandlerExtensionInterface
+     */
+    public function getFormHandler()
+    {
+        return $this->formHandler;
+    }
+
+    /**
+     * Set the form handler extension.
+     *
+     * @param FormHandlerExtensionInterface $formHandler
+     * @return $this
+     */
+    public function setFormHandler(FormHandlerExtensionInterface $formHandler)
+    {
+        $this->formHandler = $formHandler;
+
+        return $this;
+    }
 }
