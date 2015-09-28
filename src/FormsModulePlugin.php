@@ -66,7 +66,7 @@ class FormsModulePlugin extends Plugin
             return null;
         }
 
-        $handler = $form->getHandler();
+        $handler = $form->getFormHandler();
         $builder = $handler->builder($form);
 
         return $this->decorator->decorate(

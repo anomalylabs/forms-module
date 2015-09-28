@@ -29,77 +29,26 @@ class AnomalyModuleFormsCreateFormsStream extends Migration
      * @var array
      */
     protected $assignments = [
-        'form_name'                    => [
+        'form_name'        => [
             'required' => true
         ],
-        'form_slug'                    => [
+        'form_description',
+        'form_slug'        => [
             'unique'   => true,
             'required' => true
         ],
-        'handler'                      => [
+        'form_handler'     => [
             'required' => true
         ],
-        'view_options',
-        'message_email_layout',
-        'message_content'              => [
-            'required'     => true,
+        'form_view_options',
+        'success_message'  => [
             'translatable' => true
         ],
-        'message_from_name'            => [
-            'required'     => true,
+        'success_redirect' => [
             'translatable' => true
         ],
-        'message_from_email'           => [
-            'required' => true
-        ],
-        'message_reply_to_name'        => [
-            'required' => true
-        ],
-        'message_reply_to_email'       => [
-            'required' => true
-        ],
-        'message_subject'              => [
-            'required'     => true,
-            'translatable' => true
-        ],
-        'message_send_to'              => [
-            'required'     => true,
-            'translatable' => true
-        ],
-        'message_cc'                   => [
-            'translatable' => true
-        ],
-        'message_bcc'                  => [
-            'translatable' => true
-        ],
-        'include_attachments',
+        'notification',
         'autoresponder',
-        'autoresponder_email_layout',
-        'autoresponder_content'        => [
-            'translatable' => true
-        ],
-        'autoresponder_from_name'      => [
-            'translatable' => true
-        ],
-        'autoresponder_from_email',
-        'autoresponder_reply_to_name'  => [
-            'translatable' => true
-        ],
-        'autoresponder_reply_to_email' => [
-            'translatable' => true
-        ],
-        'autoresponder_subject'        => [
-            'translatable' => true
-        ],
-        'autoresponder_send_to',
-        'autoresponder_cc',
-        'autoresponder_bcc',
-        'success_message'              => [
-            'translatable' => true
-        ],
-        'success_redirect'             => [
-            'translatable' => true
-        ],
         'actions',
         'buttons'
     ];

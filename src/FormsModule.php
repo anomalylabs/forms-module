@@ -26,7 +26,7 @@ class FormsModule extends Module
      * @var array
      */
     protected $sections = [
-        'forms'       => [
+        'forms'         => [
             'buttons' => [
                 'new_form' => [
                     'data-toggle' => 'modal',
@@ -35,7 +35,7 @@ class FormsModule extends Module
                 ]
             ]
         ],
-        'assignments' => [
+        'assignments'   => [
             'parent'  => 'forms',
             'buttons' => [
                 'add_field' => [
@@ -45,17 +45,22 @@ class FormsModule extends Module
                 ]
             ]
         ],
-        'actions'     => [
+        'notifications' => [
+            'buttons' => [
+                'new_notification'
+            ]
+        ],
+        'actions'       => [
             'buttons' => [
                 'new_action'
             ]
         ],
-        'buttons'     => [
+        'buttons'       => [
             'buttons' => [
                 'new_button'
             ]
         ],
-        'fields'      => [
+        'fields'        => [
             'buttons' => [
                 'new_field' => [
                     'data-toggle' => 'modal',

@@ -1,93 +1,65 @@
 <?php
 
 return [
-    'form_name'                    => [
+    'form_name'                   => [
         'name' => 'Name'
     ],
-    'form_slug'                    => [
+    'form_slug'                   => [
         'name' => 'Slug'
     ],
-    'handler'                      => [
+    'form_handler'                => [
         'name' => 'Form'
     ],
-    'view_options'                 => [
+    'form_view_options'           => [
         'name'         => 'View Options',
-        'instructions' => 'Which fields would you like to display in the entries table?'
+        'instructions' => 'Which fields would you like to display in the entries table for this form?'
     ],
-    'success_message'              => [
+    'success_message'             => [
         'name' => 'Success Message'
     ],
-    'success_redirect'             => [
+    'success_redirect'            => [
         'name' => 'Success Redirect'
     ],
-    'message_email_layout'         => [
+    'notification_name'           => [
+        'name' => 'Name'
+    ],
+    'notification_slug'           => [
+        'name' => 'Slug'
+    ],
+    'notification_email_layout'   => [
         'name' => 'Email Layout'
     ],
-    'message_from_name'            => [
+    'notification_from_name'      => [
         'name' => 'From Name'
     ],
-    'message_from_email'           => [
+    'notification_from_email'     => [
         'name' => 'From Email'
     ],
-    'message_reply_to_name'        => [
+    'notification_reply_to_name'  => [
         'name' => 'Reply To Name'
     ],
-    'message_reply_to_email'       => [
+    'notification_reply_to_email' => [
         'name' => 'Reply To Email'
     ],
-    'message_subject'              => [
+    'notification_subject'        => [
         'name' => 'Subject'
     ],
-    'message_send_to'              => [
+    'notification_send_to'        => [
         'name' => 'Send To'
     ],
-    'message_cc'                   => [
+    'notification_cc'             => [
         'name' => 'CC'
     ],
-    'message_bcc'                  => [
+    'notification_bcc'            => [
         'name' => 'BCC'
     ],
-    'message_content'              => [
+    'notification_content'        => [
         'name' => 'Content'
     ],
-    'include_attachments'          => [
+    'include_attachments'         => [
         'name' => 'Include Attachments'
     ],
-    'autoresponder'                => [
-        'name'  => 'Autoresponder',
-        'label' => 'Enable autoresponder?'
-    ],
-    'autoresponder_email_layout'   => [
-        'name' => 'Email Layout'
-    ],
-    'autoresponder_from_name'      => [
-        'name' => 'From Name'
-    ],
-    'autoresponder_from_email'     => [
-        'name' => 'From Email'
-    ],
-    'autoresponder_reply_to_name'  => [
-        'name' => 'Reply To Name'
-    ],
-    'autoresponder_reply_to_email' => [
-        'name' => 'Reply To Email'
-    ],
-    'autoresponder_subject'        => [
-        'name' => 'Subject'
-    ],
-    'autoresponder_send_to'        => [
-        'name' => 'Send To'
-    ],
-    'autoresponder_cc'             => [
-        'name' => 'CC'
-    ],
-    'autoresponder_bcc'            => [
-        'name' => 'BCC'
-    ],
-    'autoresponder_content'        => [
-        'name' => 'Content'
-    ],
-    'button_type'                  => [
+    'button_type'                 => [
         'name'   => 'Type',
         'option' => [
             'default' => 'Default',
@@ -98,19 +70,25 @@ return [
             'link'    => 'Link',
         ]
     ],
-    'button_text'                  => [
+    'button_text'                 => [
         'name' => 'Text'
     ],
-    'button_slug'                  => [
+    'button_slug'                 => [
         'name' => 'Slug'
     ],
-    'button_href'                  => [
+    'button_href'                 => [
         'name' => 'HREF'
     ],
-    'actions'                      => [
+    'actions'                     => [
         'name' => 'Actions'
     ],
-    'buttons'                      => [
+    'buttons'                     => [
         'name' => 'Buttons'
+    ],
+    'notification'                => [
+        'name' => 'Notification'
+    ],
+    'autoresponder'               => [
+        'name' => 'Autoresponder'
     ]
 ];

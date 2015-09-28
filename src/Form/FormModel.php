@@ -29,23 +29,23 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     }
 
     /**
-     * Get the handler.
+     * Get the form handler.
      *
      * @return FormHandlerExtensionInterface
      */
-    public function getHandler()
+    public function getFormHandler()
     {
-        return $this->handler;
+        return $this->form_handler;
     }
 
     /**
-     * Get the view options.
+     * Get the form view options.
      *
      * @return array
      */
-    public function getViewOptions()
+    public function getFormViewOptions()
     {
-        return $this->view_options;
+        return $this->form_view_options;
     }
 
     /**

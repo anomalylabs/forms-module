@@ -17,18 +17,18 @@ interface FormInterface extends EntryInterface
 {
 
     /**
-     * Get the handler.
+     * Get the form handler.
      *
      * @return FormHandlerExtensionInterface
      */
-    public function getHandler();
+    public function getFormHandler();
 
     /**
-     * Get the view options.
+     * Get the form view options.
      *
      * @return array
      */
-    public function getViewOptions();
+    public function getFormViewOptions();
 
     /**
      * Get the form entries stream.

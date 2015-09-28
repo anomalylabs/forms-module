@@ -48,7 +48,7 @@ class FormsController extends AdminController
      */
     public function create(FormFormBuilder $form, FormHandlerRepositoryInterface $formHandlers)
     {
-        return $form->setFormHandler($formHandlers->get($_GET['handler']))->render();
+        return $form->setFormHandler($formHandlers->get($_GET['form_handler']))->render();
     }
 
     /**

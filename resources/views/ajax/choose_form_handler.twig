@@ -9,7 +9,7 @@
     <ul class="nav nav-stacked">
         {% for extension in extensions %}
             <li>
-                <a href="{{ url_to('admin/forms/create?handler=' ~ extension.namespace) }}">
+                <a href="{{ url_to('admin/forms/create?form_handler=' ~ extension.namespace) }}">
                     <strong>{{ trans(extension.getTitle()) }}</strong>
                     <br>
                     <small>{{ trans(extension.getDescription()) }}</small>

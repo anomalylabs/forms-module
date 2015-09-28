@@ -1,24 +1,17 @@
-<?php namespace Anomaly\FormsModule\Form\Table;
+<?php namespace Anomaly\FormsModule\Notification\Table;
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
 /**
- * Class FormTableBuilder
+ * Class NotificationTableBuilder
  *
  * @link          http://anomaly.is/streams-platform
  * @author        AnomalyLabs, Inc. <hello@anomaly.is>
  * @author        Ryan Thompson <ryan@anomaly.is>
- * @package       Anomaly\FormsModule\Form\Table
+ * @package       Anomaly\FormsModule\Notification\Table
  */
-class FormTableBuilder extends TableBuilder
+class NotificationTableBuilder extends TableBuilder
 {
-
-    /**
-     * The table filters.
-     *
-     * @var array|string
-     */
-    protected $filters = [];
 
     /**
      * The table columns.
@@ -26,11 +19,8 @@ class FormTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $columns = [
-        'form_name',
-        'form_slug',
-        'entry.handler.title',
-        'notification',
-        'autoresponder'
+        'notification_name',
+        'notification_description'
     ];
 
     /**
@@ -39,9 +29,7 @@ class FormTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $buttons = [
-        'edit',
-        'entries',
-        'assignments'
+        'edit'
     ];
 
     /**

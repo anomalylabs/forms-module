@@ -28,10 +28,10 @@ class FormFormBuilder extends FormBuilder
      */
     protected $fields = [
         '*',
-        'form_slug'    => [
+        'form_slug'         => [
             'disabled' => 'edit'
         ],
-        'view_options' => [
+        'form_view_options' => [
             'enabled' => 'edit'
         ]
     ];
@@ -42,7 +42,7 @@ class FormFormBuilder extends FormBuilder
      * @var array
      */
     protected $skips = [
-        'handler'
+        'form_handler'
     ];
 
     /**
@@ -52,55 +52,21 @@ class FormFormBuilder extends FormBuilder
      */
     protected $sections = [
         [
-            'tabs' => [
-                'form'          => [
-                    'title'  => 'anomaly.module.forms::tab.form',
-                    'fields' => [
-                        'form_name',
-                        'form_slug',
-                        'handler',
-                        'success_message',
-                        'success_redirect',
-                        'view_options',
-                        'actions',
-                        'buttons'
-                    ]
-                ],
-                'message'       => [
-                    'title'  => 'anomaly.module.forms::tab.message',
-                    'fields' => [
-                        'message_send_to',
-                        'message_from_name',
-                        'message_from_email',
-                        'message_reply_to_name',
-                        'message_reply_to_email',
-                        'message_subject',
-                        'message_email_layout',
-                        'message_content',
-                        'message_cc',
-                        'message_bcc',
-                        'include_attachments',
-                    ]
-                ],
-                'autoresponder' => [
-                    'title'  => 'anomaly.module.forms::tab.autoresponder',
-                    'fields' => [
-                        'autoresponder',
-                        'autoresponder_email_layout',
-                        'autoresponder_from_name',
-                        'autoresponder_from_email',
-                        'autoresponder_reply_to_name',
-                        'autoresponder_reply_to_email',
-                        'autoresponder_subject',
-                        'autoresponder_send_to',
-                        'autoresponder_cc',
-                        'autoresponder_bcc',
-                        'autoresponder_content',
-                    ]
-                ],
+            'fields' => [
+                'form_name',
+                'form_slug',
+                'form_handler',
+                'success_message',
+                'success_redirect',
+                'actions',
+                'buttons',
+                'notification',
+                'autoresponder',
+                'form_view_options',
             ]
         ]
     ];
+
 
     /**
      * Fired when builder is ready to build.

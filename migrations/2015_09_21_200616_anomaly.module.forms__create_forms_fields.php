@@ -18,14 +18,15 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
      * @var array
      */
     protected $fields = [
-        'form_name'                    => 'anomaly.field_type.text',
-        'form_slug'                    => [
+        'form_name'                   => 'anomaly.field_type.text',
+        'form_description'            => 'anomaly.field_type.textarea',
+        'form_slug'                   => [
             'type'   => 'anomaly.field_type.slug',
             'config' => [
                 'slugify' => 'form_name'
             ]
         ],
-        'handler'                      => [
+        'form_handler'                => [
             'type'   => 'anomaly.field_type.addon',
             'config' => [
                 'type'          => 'extension',
@@ -33,26 +34,34 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
                 'default_value' => 'anomaly.extension.default_form_handler'
             ]
         ],
-        'view_options'                 => [
+        'form_view_options'           => [
             'type'   => 'anomaly.field_type.tags',
             'config' => [
                 'handler'             => 'Anomaly\FormsModule\Form\Form\Field\ViewOptions@handle',
                 'allow_creating_tags' => false
             ]
         ],
-        'message_email_layout'         => [
+        'notification_name'           => 'anomaly.field_type.text',
+        'notification_description'    => 'anomaly.field_type.textarea',
+        'notification_slug'           => [
+            'type'   => 'anomaly.field_type.slug',
+            'config' => [
+                'slugify' => 'notification_name'
+            ]
+        ],
+        'notification_email_layout'   => [
             'type'   => 'anomaly.field_type.select',
             'config' => [
                 'handler' => 'emails'
             ]
         ],
-        'message_content'              => 'anomaly.field_type.wysiwyg',
-        'message_from_name'            => 'anomaly.field_type.text',
-        'message_from_email'           => 'anomaly.field_type.text',
-        'message_reply_to_name'        => 'anomaly.field_type.text',
-        'message_reply_to_email'       => 'anomaly.field_type.text',
-        'message_subject'              => 'anomaly.field_type.text',
-        'message_send_to'              => [
+        'notification_content'        => 'anomaly.field_type.wysiwyg',
+        'notification_from_name'      => 'anomaly.field_type.text',
+        'notification_from_email'     => 'anomaly.field_type.text',
+        'notification_reply_to_name'  => 'anomaly.field_type.text',
+        'notification_reply_to_email' => 'anomaly.field_type.text',
+        'notification_subject'        => 'anomaly.field_type.text',
+        'notification_send_to'        => [
             'type'   => 'anomaly.field_type.tags',
             'config' => [
                 'filter' => [
@@ -60,7 +69,7 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
                 ]
             ]
         ],
-        'message_cc'                   => [
+        'notification_cc'             => [
             'type'   => 'anomaly.field_type.tags',
             'config' => [
                 'filter' => [
@@ -68,7 +77,7 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
                 ]
             ]
         ],
-        'message_bcc'                  => [
+        'notification_bcc'            => [
             'type'   => 'anomaly.field_type.tags',
             'config' => [
                 'filter' => [
@@ -76,40 +85,22 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
                 ]
             ]
         ],
-        'include_attachments'          => 'anomaly.field_type.boolean',
-        'autoresponder'                => 'anomaly.field_type.boolean',
-        'autoresponder_email_layout'   => [
-            'type'   => 'anomaly.field_type.select',
+        'notification'                => [
+            'type'   => 'anomaly.field_type.relationship',
             'config' => [
-                'handler' => 'emails'
+                'related' => 'Anomaly\FormsModule\Notification\NotificationModel'
             ]
         ],
-        'autoresponder_from_name'      => 'anomaly.field_type.text',
-        'autoresponder_from_email'     => 'anomaly.field_type.text',
-        'autoresponder_reply_to_name'  => 'anomaly.field_type.text',
-        'autoresponder_reply_to_email' => 'anomaly.field_type.text',
-        'autoresponder_subject'        => 'anomaly.field_type.text',
-        'autoresponder_send_to'        => 'anomaly.field_type.text',
-        'autoresponder_content'        => 'anomaly.field_type.wysiwyg',
-        'autoresponder_cc'             => [
-            'type'   => 'anomaly.field_type.tags',
+        'autoresponder'               => [
+            'type'   => 'anomaly.field_type.relationship',
             'config' => [
-                'filter' => [
-                    'FILTER_VALIDATE_EMAIL'
-                ]
+                'related' => 'Anomaly\FormsModule\Notification\NotificationModel'
             ]
         ],
-        'autoresponder_bcc'            => [
-            'type'   => 'anomaly.field_type.tags',
-            'config' => [
-                'filter' => [
-                    'FILTER_VALIDATE_EMAIL'
-                ]
-            ]
-        ],
-        'success_message'              => 'anomaly.field_type.textarea',
-        'success_redirect'             => 'anomaly.field_type.text',
-        'button_type'                  => [
+        'include_attachments'         => 'anomaly.field_type.boolean',
+        'success_message'             => 'anomaly.field_type.textarea',
+        'success_redirect'            => 'anomaly.field_type.text',
+        'button_type'                 => [
             'type'   => 'anomaly.field_type.select',
             'config' => [
                 'options' => [
@@ -122,26 +113,26 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
                 ]
             ]
         ],
-        'button_text'                  => 'anomaly.field_type.text',
-        'button_slug'                  => [
+        'button_text'                 => 'anomaly.field_type.text',
+        'button_slug'                 => [
             'type'   => 'anomaly.field_type.slug',
             'config' => [
                 'slugify' => 'button_text'
             ]
         ],
-        'actions'                      => [
+        'actions'                     => [
             'type'   => 'anomaly.field_type.multiple',
             'config' => [
                 'related' => 'Anomaly\FormsModule\Action\ActionModel'
             ]
         ],
-        'buttons'                      => [
+        'buttons'                     => [
             'type'   => 'anomaly.field_type.multiple',
             'config' => [
                 'related' => 'Anomaly\FormsModule\Button\ButtonModel'
             ]
         ],
-        'button_href'                  => 'anomaly.field_type.text'
+        'button_href'                 => 'anomaly.field_type.text'
     ];
 
 }
