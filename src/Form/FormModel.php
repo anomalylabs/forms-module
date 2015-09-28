@@ -3,6 +3,7 @@
 use Anomaly\FormsModule\Form\Command\GetFormEntriesStream;
 use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\FormsModule\Form\Handler\Contract\FormHandlerExtensionInterface;
+use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Model\Forms\FormsFormsEntryModel;
 use Anomaly\Streams\Platform\Stream\Contract\StreamInterface;
 
@@ -255,5 +256,25 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     public function getAutoresponderBcc()
     {
         return $this->autoresponder_bcc;
+    }
+
+    /**
+     * Get the related actions.
+     *
+     * @return EntryCollection
+     */
+    public function getActions()
+    {
+        return $this->actions;
+    }
+
+    /**
+     * Get the related buttons.
+     *
+     * @return EntryCollection
+     */
+    public function getButtons()
+    {
+        return $this->buttons;
     }
 }

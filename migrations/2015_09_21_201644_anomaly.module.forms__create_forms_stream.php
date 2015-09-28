@@ -99,7 +99,9 @@ class AnomalyModuleFormsCreateFormsStream extends Migration
         ],
         'success_redirect'             => [
             'translatable' => true
-        ]
+        ],
+        'actions',
+        'buttons'
     ];
 
 }

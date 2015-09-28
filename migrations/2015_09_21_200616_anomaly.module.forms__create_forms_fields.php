@@ -109,6 +109,39 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
         ],
         'success_message'              => 'anomaly.field_type.textarea',
         'success_redirect'             => 'anomaly.field_type.text',
+        'button_type'                  => [
+            'type'   => 'anomaly.field_type.select',
+            'config' => [
+                'options' => [
+                    'default' => 'anomaly.module.forms::field.button_type.option.default',
+                    'success' => 'anomaly.module.forms::field.button_type.option.success',
+                    'warning' => 'anomaly.module.forms::field.button_type.option.warning',
+                    'danger'  => 'anomaly.module.forms::field.button_type.option.danger',
+                    'info'    => 'anomaly.module.forms::field.button_type.option.info',
+                    'link'    => 'anomaly.module.forms::field.button_type.option.link',
+                ]
+            ]
+        ],
+        'button_text'                  => 'anomaly.field_type.text',
+        'button_slug'                  => [
+            'type'   => 'anomaly.field_type.slug',
+            'config' => [
+                'slugify' => 'button_text'
+            ]
+        ],
+        'actions'                      => [
+            'type'   => 'anomaly.field_type.multiple',
+            'config' => [
+                'related' => 'Anomaly\FormsModule\Action\ActionModel'
+            ]
+        ],
+        'buttons'                      => [
+            'type'   => 'anomaly.field_type.multiple',
+            'config' => [
+                'related' => 'Anomaly\FormsModule\Button\ButtonModel'
+            ]
+        ],
+        'button_href'                  => 'anomaly.field_type.text'
     ];
 
 }

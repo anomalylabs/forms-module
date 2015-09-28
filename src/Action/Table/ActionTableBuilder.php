@@ -2,56 +2,43 @@
 
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
+/**
+ * Class ActionTableBuilder
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\FormsModule\Action\Table
+ */
 class ActionTableBuilder extends TableBuilder
 {
-
-    /**
-     * The table views.
-     *
-     * @var array|string
-     */
-    protected $views = [];
-
-    /**
-     * The table filters.
-     *
-     * @var array|string
-     */
-    protected $filters = [];
 
     /**
      * The table columns.
      *
      * @var array|string
      */
-    protected $columns = [];
+    protected $columns = [
+        'entry.button_type.value',
+        'button_text'
+    ];
 
     /**
      * The table buttons.
      *
      * @var array|string
      */
-    protected $buttons = [];
+    protected $buttons = [
+        'edit'
+    ];
 
     /**
      * The table actions.
      *
      * @var array|string
      */
-    protected $actions = [];
-
-    /**
-     * The table options.
-     *
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * The table assets.
-     *
-     * @var array
-     */
-    protected $assets = [];
+    protected $actions = [
+        'delete'
+    ];
 
 }

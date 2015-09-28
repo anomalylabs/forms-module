@@ -18,7 +18,9 @@ class AnomalyModuleFormsCreateButtonsStream extends Migration
      * @var array
      */
     protected $stream = [
-        'slug' => 'buttons'
+        'slug'         => 'buttons',
+        'title_column' => 'button_text',
+        'translatable' => true,
     ];
 
     /**
@@ -26,6 +28,21 @@ class AnomalyModuleFormsCreateButtonsStream extends Migration
      *
      * @var array
      */
-    protected $assignments = [];
+    protected $assignments = [
+        'button_type' => [
+            'required' => true
+        ],
+        'button_text' => [
+            'required'     => true,
+            'translatable' => true
+        ],
+        'button_slug' => [
+            'required' => true,
+            'unique'   => true
+        ],
+        'button_href' => [
+            'required' => true
+        ]
+    ];
 
 }

@@ -2,6 +2,7 @@
 
 use Anomaly\FormsModule\Form\Handler\Contract\FormHandlerExtensionInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
+use Anomaly\Streams\Platform\Entry\EntryCollection;
 use Anomaly\Streams\Platform\Stream\Contract\StreamInterface;
 
 /**
@@ -175,4 +176,18 @@ interface FormInterface extends EntryInterface
      * @return array
      */
     public function getAutoresponderBcc();
+
+    /**
+     * Get the related actions.
+     *
+     * @return EntryCollection
+     */
+    public function getActions();
+
+    /**
+     * Get the related buttons.
+     *
+     * @return EntryCollection
+     */
+    public function getButtons();
 }

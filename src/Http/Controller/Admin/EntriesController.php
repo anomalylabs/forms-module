@@ -38,7 +38,7 @@ class EntriesController extends AdminController
 
         return $table
             ->setModel($stream->getEntryModel())
-            ->setFilters($stream->getViewOptions())
+            ->setFilters($form->getViewOptions())
             ->setColumns($form->getViewOptions())
             ->setButtons(
                 [

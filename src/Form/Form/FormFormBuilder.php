@@ -61,7 +61,9 @@ class FormFormBuilder extends FormBuilder
                         'handler',
                         'success_message',
                         'success_redirect',
-                        'view_options'
+                        'view_options',
+                        'actions',
+                        'buttons'
                     ]
                 ],
                 'message'       => [

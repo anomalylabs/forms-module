@@ -2,6 +2,14 @@
 
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
+/**
+ * Class ActionFormBuilder
+ *
+ * @link          http://anomaly.is/streams-platform
+ * @author        AnomalyLabs, Inc. <hello@anomaly.is>
+ * @author        Ryan Thompson <ryan@anomaly.is>
+ * @package       Anomaly\FormsModule\Action\Form
+ */
 class ActionFormBuilder extends FormBuilder
 {
 
@@ -10,48 +18,11 @@ class ActionFormBuilder extends FormBuilder
      *
      * @var array|string
      */
-    protected $fields = [];
-
-    /**
-     * Fields to skip.
-     *
-     * @var array|string
-     */
-    protected $skips = [];
-
-    /**
-     * The form actions.
-     *
-     * @var array|string
-     */
-    protected $actions = [];
-
-    /**
-     * The form buttons.
-     *
-     * @var array|string
-     */
-    protected $buttons = [];
-
-    /**
-     * The form options.
-     *
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * The form sections.
-     *
-     * @var array
-     */
-    protected $sections = [];
-
-    /**
-     * The form assets.
-     *
-     * @var array
-     */
-    protected $assets = [];
+    protected $fields = [
+        '*',
+        'button_slug' => [
+            'read_only' => true
+        ]
+    ];
 
 }

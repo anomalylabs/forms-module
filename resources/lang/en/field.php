@@ -87,4 +87,30 @@ return [
     'autoresponder_content'        => [
         'name' => 'Content'
     ],
+    'button_type'                  => [
+        'name'   => 'Type',
+        'option' => [
+            'default' => 'Default',
+            'success' => 'Success',
+            'warning' => 'Warning',
+            'danger'  => 'Danger',
+            'info'    => 'Info',
+            'link'    => 'Link',
+        ]
+    ],
+    'button_text'                  => [
+        'name' => 'Text'
+    ],
+    'button_slug'                  => [
+        'name' => 'Slug'
+    ],
+    'button_href'                  => [
+        'name' => 'HREF'
+    ],
+    'actions'                      => [
+        'name' => 'Actions'
+    ],
+    'buttons'                      => [
+        'name' => 'Buttons'
+    ]
 ];
