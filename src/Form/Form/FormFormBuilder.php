@@ -46,29 +46,6 @@ class FormFormBuilder extends FormBuilder
     ];
 
     /**
-     * The form sections.
-     *
-     * @var array
-     */
-    protected $sections = [
-        [
-            'fields' => [
-                'form_name',
-                'form_slug',
-                'form_handler',
-                'success_message',
-                'success_redirect',
-                'actions',
-                'buttons',
-                'notification',
-                'autoresponder',
-                'form_view_options',
-            ]
-        ]
-    ];
-
-
-    /**
      * Fired when builder is ready to build.
      *
      * @throws \Exception
@@ -88,7 +65,7 @@ class FormFormBuilder extends FormBuilder
         $entry = $this->getFormEntry();
 
         if (!$entry->exists) {
-            $entry->handler = $this->getFormHandler();
+            $entry->form_handler = $this->getFormHandler();
         }
     }
 

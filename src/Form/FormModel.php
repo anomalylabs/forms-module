@@ -3,7 +3,9 @@
 use Anomaly\FormsModule\Form\Command\GetFormEntriesStream;
 use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\FormsModule\Form\Handler\Contract\FormHandlerExtensionInterface;
+use Anomaly\FormsModule\Notification\Contract\NotificationInterface;
 use Anomaly\Streams\Platform\Entry\EntryCollection;
+use Anomaly\Streams\Platform\Field\Contract\FieldInterface;
 use Anomaly\Streams\Platform\Model\Forms\FormsFormsEntryModel;
 use Anomaly\Streams\Platform\Stream\Contract\StreamInterface;
 
@@ -69,83 +71,13 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     }
 
     /**
-     * Get the message send to emails.
+     * Get the related actions.
      *
-     * @return array
+     * @return EntryCollection
      */
-    public function getMessageSendTo()
+    public function getActions()
     {
-        return $this->message_send_to;
-    }
-
-    /**
-     * Get the message from email.
-     *
-     * @return string
-     */
-    public function getMessageFromEmail()
-    {
-        return $this->message_from_email;
-    }
-
-    /**
-     * Get the message from name.
-     *
-     * @return string
-     */
-    public function getMessageFromName()
-    {
-        return $this->message_from_name;
-    }
-
-    /**
-     * Get the reply to email.
-     *
-     * @return string
-     */
-    public function getMessageReplyToEmail()
-    {
-        return $this->message_reply_to_email;
-    }
-
-    /**
-     * Get the reply to name.
-     *
-     * @return string
-     */
-    public function getMessageReplyToName()
-    {
-        return $this->message_reply_to_name;
-    }
-
-    /**
-     * Get the message subject.
-     *
-     * @return string
-     */
-    public function getMessageSubject()
-    {
-        return $this->message_subject;
-    }
-
-    /**
-     * Get the message CC emails.
-     *
-     * @return array
-     */
-    public function getMessageCc()
-    {
-        return $this->message_cc;
-    }
-
-    /**
-     * Get the message BCC emails.
-     *
-     * @return array
-     */
-    public function getMessageBcc()
-    {
-        return $this->message_bcc;
+        return $this->actions;
     }
 
     /**
@@ -169,106 +101,6 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     }
 
     /**
-     * Return the autoresponder flag.
-     *
-     * @return bool
-     */
-    public function hasAutoresponder()
-    {
-        return $this->autoresponder;
-    }
-
-    /**
-     * Get the autoresponder send to emails.
-     *
-     * @return array
-     */
-    public function getAutoresponderSendTo()
-    {
-        return $this->autoresponder_send_to;
-    }
-
-    /**
-     * Get the autoresponder from email.
-     *
-     * @return string
-     */
-    public function getAutoresponderFromEmail()
-    {
-        return $this->autoresponder_from_email;
-    }
-
-    /**
-     * Get the autoresponder from name.
-     *
-     * @return string
-     */
-    public function getAutoresponderFromName()
-    {
-        return $this->autoresponder_from_name;
-    }
-
-    /**
-     * Get the reply to email.
-     *
-     * @return string
-     */
-    public function getAutoresponderReplyToEmail()
-    {
-        return $this->autoresponder_reply_to_email;
-    }
-
-    /**
-     * Get the reply to name.
-     *
-     * @return string
-     */
-    public function getAutoresponderReplyToName()
-    {
-        return $this->autoresponder_reply_to_name;
-    }
-
-    /**
-     * Get the autoresponder subject.
-     *
-     * @return string
-     */
-    public function getAutoresponderSubject()
-    {
-        return $this->autoresponder_subject;
-    }
-
-    /**
-     * Get the autoresponder CC emails.
-     *
-     * @return array
-     */
-    public function getAutoresponderCc()
-    {
-        return $this->autoresponder_cc;
-    }
-
-    /**
-     * Get the autoresponder BCC emails.
-     *
-     * @return array
-     */
-    public function getAutoresponderBcc()
-    {
-        return $this->autoresponder_bcc;
-    }
-
-    /**
-     * Get the related actions.
-     *
-     * @return EntryCollection
-     */
-    public function getActions()
-    {
-        return $this->actions;
-    }
-
-    /**
      * Get the related buttons.
      *
      * @return EntryCollection
@@ -276,5 +108,85 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     public function getButtons()
     {
         return $this->buttons;
+    }
+
+    /**
+     * Get the send notification flag.
+     *
+     * @return array
+     */
+    public function shouldSendNotification()
+    {
+        return $this->send_notification;
+    }
+
+    /**
+     * Get the notification send to emails.
+     *
+     * @return array
+     */
+    public function getNotificationSendTo()
+    {
+        return $this->notification_send_to;
+    }
+
+    /**
+     * Get the related notification.
+     *
+     * @return null|NotificationInterface
+     */
+    public function getNotification()
+    {
+        return $this->notification;
+    }
+
+    /**
+     * Get the notification CC emails.
+     *
+     * @return array
+     */
+    public function getNotificationCc()
+    {
+        return $this->notification_cc;
+    }
+
+    /**
+     * Get the notification BCC emails.
+     *
+     * @return array
+     */
+    public function getNotificationBcc()
+    {
+        return $this->notification_bcc;
+    }
+
+    /**
+     * Get the related user email field.
+     *
+     * @return FieldInterface
+     */
+    public function getUserEmailField()
+    {
+        return $this->user_email_field;
+    }
+
+    /**
+     * Get the send autoresponder flag.
+     *
+     * @return array
+     */
+    public function shouldSendAutoresponder()
+    {
+        return $this->send_autoresponder;
+    }
+
+    /**
+     * Get the related autoresponder.
+     *
+     * @return null|NotificationInterface
+     */
+    public function getAutoresponder()
+    {
+        return $this->autoresponder;
     }
 }

@@ -61,14 +61,6 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
         'notification_reply_to_name'  => 'anomaly.field_type.text',
         'notification_reply_to_email' => 'anomaly.field_type.text',
         'notification_subject'        => 'anomaly.field_type.text',
-        'notification_send_to'        => [
-            'type'   => 'anomaly.field_type.tags',
-            'config' => [
-                'filter' => [
-                    'FILTER_VALIDATE_EMAIL'
-                ]
-            ]
-        ],
         'notification_cc'             => [
             'type'   => 'anomaly.field_type.tags',
             'config' => [
@@ -85,10 +77,29 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
                 ]
             ]
         ],
+        'send_notification'           => 'anomaly.field_type.boolean',
+        'notification_send_to'        => [
+            'type'   => 'anomaly.field_type.tags',
+            'config' => [
+                'filter' => [
+                    'FILTER_VALIDATE_EMAIL'
+                ]
+            ]
+        ],
         'notification'                => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
                 'related' => 'Anomaly\FormsModule\Notification\NotificationModel'
+            ]
+        ],
+        'send_autoresponder'          => 'anomaly.field_type.boolean',
+        'user_email_field'            => [
+            'type'   => 'anomaly.field_type.relationship',
+            'config' => [
+                'related'   => 'Anomaly\Streams\Platform\Field\FieldModel',
+                'handler'   => 'fields',
+                'namespace' => 'forms',
+                'unlocked'  => true
             ]
         ],
         'autoresponder'               => [

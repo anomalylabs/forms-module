@@ -2,6 +2,7 @@
 
 use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FormsModule\Form\Contract\FormInterface;
+use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Assignment\Contract\AssignmentInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Support\Value;
@@ -22,6 +23,13 @@ class FormMailer
 {
 
     /**
+     * The form repository.
+     *
+     * @var FormRepositoryInterface
+     */
+    protected $forms;
+
+    /**
      * The value utility.
      *
      * @var Value
@@ -38,45 +46,57 @@ class FormMailer
     /**
      * Create a new FormMailer instance.
      *
-     * @param Mailer $mailer
-     * @param Value  $value
+     * @param Mailer                  $mailer
+     * @param Value                   $value
+     * @param FormRepositoryInterface $forms
      */
-    public function __construct(Mailer $mailer, Value $value)
+    public function __construct(Mailer $mailer, Value $value, FormRepositoryInterface $forms)
     {
-        $this->value  = $value;
         $this->mailer = $mailer;
+        $this->value  = $value;
+        $this->forms  = $forms;
     }
 
     /**
      * Send the form message.
      *
-     * @param FormInterface $form
-     * @param FormBuilder   $builder
+     * @param FormInterface           $form
+     * @param FormRepositoryInterface $forms
+     * @param FormBuilder             $builder
      */
     public function send(FormInterface $form, FormBuilder $builder)
     {
         $input = $entry = $builder->getFormEntry();
 
+        $stream = $entry->getStream();
+        $form   = $this->forms->findBySlug($stream->getSlug());
+
+        if (!$form->shouldSendNotification()) {
+            return;
+        }
+
+        $notification = $form->getNotification();
+
         /* @var WysiwygFieldType $email */
-        $email = $form->getFieldType('message_content');
+        $email = $notification->getFieldType('notification_content');
 
         $this->mailer->send(
             $email->getViewPath(),
             compact('input'),
-            function (Message $message) use ($form, $entry, $builder) {
+            function (Message $message) use ($form, $entry, $builder, $notification) {
 
-                $message->cc($form->getMessageCc());
-                $message->bcc($form->getMessageBcc());
-                $message->to($form->getMessageSendTo());
-                $message->subject($this->value->make($form->getMessageSubject(), $entry, 'input'));
-                $message->sender($this->value->make($form->getMessageFromEmail(), $entry, 'input'));
+                $message->cc($form->getNotificationCc());
+                $message->bcc($form->getNotificationBcc());
+                $message->to($form->getNotificationSendTo());
+                $message->subject($this->value->make($notification->getNotificationSubject(), $entry, 'input'));
+                $message->sender($this->value->make($notification->getNotificationFromEmail(), $entry, 'input'));
                 $message->replyTo(
-                    $this->value->make($form->getMessageReplyToEmail(), $entry, 'input'),
-                    $this->value->make($form->getMessageReplyToName(), $entry, 'input')
+                    $this->value->make($notification->getNotificationReplyToEmail(), $entry, 'input'),
+                    $this->value->make($notification->getNotificationReplyToName(), $entry, 'input')
                 );
                 $message->from(
-                    $this->value->make($form->getMessageFromEmail(), $entry, 'input'),
-                    $this->value->make($form->getMessageFromName(), $entry, 'input')
+                    $this->value->make($notification->getNotificationFromEmail(), $entry, 'input'),
+                    $this->value->make($notification->getNotificationFromName(), $entry, 'input')
                 );
 
                 $this->attachFiles($message, $entry);

@@ -59,17 +59,7 @@ class AnomalyModuleFormsCreateNotificationsStream extends Migration
             'required'     => true,
             'translatable' => true
         ],
-        'notification_send_to'        => [
-            'required'     => true,
-            'translatable' => true
-        ],
-        'notification_cc'             => [
-            'translatable' => true
-        ],
-        'notification_bcc'            => [
-            'translatable' => true
-        ],
-        'include_attachments',
+        'include_attachments'
     ];
 
 }

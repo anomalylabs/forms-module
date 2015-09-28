@@ -28,7 +28,7 @@ class FormsController extends PublicController
     {
         $form = $forms->findBySlug($form);
 
-        $handler = $form->getHandler();
+        $handler = $form->getFormHandler();
         $builder = $handler->builder($form);
 
         $builder->handle();
