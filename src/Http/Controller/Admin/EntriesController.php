@@ -50,6 +50,15 @@ class EntriesController extends AdminController
             ->render();
     }
 
+    /**
+     * Return the readonly view for an entry.
+     *
+     * @param FormBuilder             $generic
+     * @param FormRepositoryInterface $forms
+     * @param                         $form
+     * @param                         $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function view(
         FormBuilder $generic,
         FormRepositoryInterface $forms,
@@ -65,10 +74,9 @@ class EntriesController extends AdminController
         return $generic
             ->setSave(false)
             ->setReadOnly(true)
+            ->setButtons(['cancel'])
             ->setModel($builder->getModel())
             ->setFields($builder->getFields())
-            ->setActions([])
-            ->setButtons([])
             ->render($id);
     }
 }
