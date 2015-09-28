@@ -4,6 +4,7 @@ use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
+use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
 /**
@@ -28,11 +29,46 @@ class EntriesController extends AdminController
         TableBuilder $table,
         StreamRepositoryInterface $streams,
         FormRepositoryInterface $forms,
+        $form
+    ) {
+        /* @var FormInterface $form */
+        $form = $forms->find($form);
+
+        $stream = $streams->findBySlugAndNamespace($form->getFormSlug(), 'forms');
+
+        return $table
+            ->setModel($stream->getEntryModel())
+            ->setFilters($stream->getViewOptions())
+            ->setColumns($form->getViewOptions())
+            ->setButtons(
+                [
+                    'view' => [
+                        'href' => 'admin/forms/entries/{request.route.parameters.form}/view/{entry.id}'
+                    ]
+                ]
+            )
+            ->render();
+    }
+
+    public function view(
+        FormBuilder $generic,
+        FormRepositoryInterface $forms,
+        $form,
         $id
     ) {
         /* @var FormInterface $form */
-        $form = $forms->find($id);
+        $form = $forms->find($form);
 
-        return $table->setModel($streams->findBySlugAndNamespace($form->getFormSlug(), 'forms')->getEntryModel())->render();
+        $handler = $form->getHandler();
+        $builder = $handler->builder($form);
+
+        return $generic
+            ->setSave(false)
+            ->setReadOnly(true)
+            ->setModel($builder->getModel())
+            ->setFields($builder->getFields())
+            ->setActions([])
+            ->setButtons([])
+            ->render($id);
     }
 }

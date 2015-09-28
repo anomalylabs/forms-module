@@ -49,23 +49,28 @@ class FormsModulePlugin extends Plugin
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction(
-                'forms_get',
-                function ($slug) {
-
-                    if (!$form = $this->forms->findBySlug($slug)) {
-                        return null;
-                    }
-
-                    $handler = $form->getHandler();
-                    $builder = $handler->builder($form);
-
-                    return $this->decorator->decorate(
-                        $builder->make()->getForm()
-                    );
-                },
-                ['is_safe' => ['html']]
-            )
+            new \Twig_SimpleFunction('forms_get', [$this, 'get'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('forms_display', [$this, 'get'], ['is_safe' => ['html']])
         ];
+    }
+
+    /**
+     * Return the form presenter.
+     *
+     * @param $slug
+     * @return array|\ArrayAccess|\IteratorAggregate|null|\Robbo\Presenter\Presenter
+     */
+    public function get($slug)
+    {
+        if (!$form = $this->forms->findBySlug($slug)) {
+            return null;
+        }
+
+        $handler = $form->getHandler();
+        $builder = $handler->builder($form);
+
+        return $this->decorator->decorate(
+            $builder->make()->getForm()
+        );
     }
 }

@@ -28,8 +28,11 @@ class FormFormBuilder extends FormBuilder
      */
     protected $fields = [
         '*',
-        'form_slug' => [
+        'form_slug'    => [
             'disabled' => 'edit'
+        ],
+        'view_options' => [
+            'enabled' => 'edit'
         ]
     ];
 
@@ -57,7 +60,8 @@ class FormFormBuilder extends FormBuilder
                         'form_slug',
                         'handler',
                         'success_message',
-                        'success_redirect'
+                        'success_redirect',
+                        'view_options'
                     ]
                 ],
                 'message'       => [

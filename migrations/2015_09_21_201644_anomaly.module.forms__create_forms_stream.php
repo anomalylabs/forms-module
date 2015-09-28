@@ -39,6 +39,7 @@ class AnomalyModuleFormsCreateFormsStream extends Migration
         'handler'                      => [
             'required' => true
         ],
+        'view_options',
         'message_email_layout',
         'message_content'              => [
             'required'     => true,

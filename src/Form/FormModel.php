@@ -38,6 +38,16 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     }
 
     /**
+     * Get the view options.
+     *
+     * @return array
+     */
+    public function getViewOptions()
+    {
+        return $this->view_options;
+    }
+
+    /**
      * Get the form entries stream.
      *
      * @return StreamInterface

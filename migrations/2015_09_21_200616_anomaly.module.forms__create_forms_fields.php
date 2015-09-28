@@ -33,6 +33,13 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
                 'default_value' => 'anomaly.extension.default_form_handler'
             ]
         ],
+        'view_options'                 => [
+            'type'   => 'anomaly.field_type.tags',
+            'config' => [
+                'handler'             => 'Anomaly\FormsModule\Form\Form\Field\ViewOptions@handle',
+                'allow_creating_tags' => false
+            ]
+        ],
         'message_email_layout'         => [
             'type'   => 'anomaly.field_type.select',
             'config' => [

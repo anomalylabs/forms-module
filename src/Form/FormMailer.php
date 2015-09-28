@@ -1,6 +1,9 @@
 <?php namespace Anomaly\FormsModule\Form;
 
+use Anomaly\FilesModule\File\Contract\FileInterface;
 use Anomaly\FormsModule\Form\Contract\FormInterface;
+use Anomaly\Streams\Platform\Assignment\Contract\AssignmentInterface;
+use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Support\Value;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\WysiwygFieldType\WysiwygFieldType;
@@ -66,6 +69,7 @@ class FormMailer
                 $message->bcc($form->getMessageBcc());
                 $message->to($form->getMessageSendTo());
                 $message->subject($this->value->make($form->getMessageSubject(), $entry, 'input'));
+                $message->sender($this->value->make($form->getMessageFromEmail(), $entry, 'input'));
                 $message->replyTo(
                     $this->value->make($form->getMessageReplyToEmail(), $entry, 'input'),
                     $this->value->make($form->getMessageReplyToName(), $entry, 'input')
@@ -74,7 +78,27 @@ class FormMailer
                     $this->value->make($form->getMessageFromEmail(), $entry, 'input'),
                     $this->value->make($form->getMessageFromName(), $entry, 'input')
                 );
+
+                $this->attachFiles($message, $entry);
             }
         );
+    }
+
+    /**
+     * Attach file uploads.
+     *
+     * @param Message        $message
+     * @param EntryInterface $entry
+     */
+    protected function attachFiles(Message $message, EntryInterface $entry)
+    {
+        /* @var AssignmentInterface $assignment */
+        foreach ($entry->getAssignmentsByFieldType('anomaly.field_type.file') as $assignment) {
+
+            /* @var FileInterface $file */
+            if ($file = $entry->{$assignment->getFieldSlug()}) {
+                $message->attachData($file->resource()->read(), $file->getName());
+            }
+        }
     }
 }

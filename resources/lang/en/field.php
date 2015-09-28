@@ -10,6 +10,10 @@ return [
     'handler'                      => [
         'name' => 'Form'
     ],
+    'view_options'                 => [
+        'name'         => 'View Options',
+        'instructions' => 'Which fields would you like to display in the entries table?'
+    ],
     'success_message'              => [
         'name' => 'Success Message'
     ],

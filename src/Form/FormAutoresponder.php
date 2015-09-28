@@ -70,6 +70,7 @@ class FormAutoresponder
                 $message->bcc($form->getAutoresponderBcc());
                 $message->to($this->value->make($form->getAutoresponderSendTo(), $entry, 'input'));
                 $message->subject($this->value->make($form->getAutoresponderSubject(), $entry, 'input'));
+                $message->sender($this->value->make($form->getAutoresponderFromEmail(), $entry, 'input'));
                 $message->replyTo(
                     $this->value->make($form->getAutoresponderReplyToEmail(), $entry, 'input'),
                     $this->value->make($form->getAutoresponderReplyToName(), $entry, 'input')

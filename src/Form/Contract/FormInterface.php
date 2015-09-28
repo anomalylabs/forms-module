@@ -23,6 +23,13 @@ interface FormInterface extends EntryInterface
     public function getHandler();
 
     /**
+     * Get the view options.
+     *
+     * @return array
+     */
+    public function getViewOptions();
+
+    /**
      * Get the form entries stream.
      *
      * @return StreamInterface
