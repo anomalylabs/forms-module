@@ -75,28 +75,28 @@ class FormAutoresponder
             return;
         }
 
-        $autoresponder = $form->getAutoresponder();
+        $notification = $form->getAutoresponder();
 
         /* @var WysiwygFieldType $email */
-        $email = $autoresponder->getFieldType('autoresponder_content');
+        $email = $notification->getFieldType('notification_content');
 
         $this->mailer->send(
             $email->getViewPath(),
             compact('input'),
-            function (Message $message) use ($form, $entry, $builder, $autoresponder) {
+            function (Message $message) use ($form, $entry, $builder, $notification) {
 
                 $field = $form->getUserEmailField();
 
                 $message->to($entry->{$field->getSlug()});
-                $message->subject($this->value->make($autoresponder->getNotificationSubject(), $entry, 'input'));
-                $message->sender($this->value->make($autoresponder->getNotificationFromEmail(), $entry, 'input'));
+                $message->subject($this->value->make($notification->getNotificationSubject(), $entry, 'input'));
+                $message->sender($this->value->make($notification->getNotificationFromEmail(), $entry, 'input'));
                 $message->replyTo(
-                    $this->value->make($autoresponder->getNotificationReplyToEmail(), $entry, 'input'),
-                    $this->value->make($autoresponder->getNotificationReplyToName(), $entry, 'input')
+                    $this->value->make($notification->getNotificationReplyToEmail(), $entry, 'input'),
+                    $this->value->make($notification->getNotificationReplyToName(), $entry, 'input')
                 );
                 $message->from(
-                    $this->value->make($autoresponder->getNotificationFromEmail(), $entry, 'input'),
-                    $this->value->make($autoresponder->getNotificationFromName(), $entry, 'input')
+                    $this->value->make($notification->getNotificationFromEmail(), $entry, 'input'),
+                    $this->value->make($notification->getNotificationFromName(), $entry, 'input')
                 );
 
                 $this->attachFiles($message, $entry);

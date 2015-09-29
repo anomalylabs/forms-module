@@ -38,8 +38,8 @@ class EntriesController extends AdminController
 
         return $table
             ->setModel($stream->getEntryModel())
-            ->setFilters($form->getViewOptions())
-            ->setColumns($form->getViewOptions())
+            ->setFilters($form->getFormViewOptions())
+            ->setColumns($form->getFormViewOptions())
             ->setButtons(
                 [
                     'view' => [
@@ -68,7 +68,7 @@ class EntriesController extends AdminController
         /* @var FormInterface $form */
         $form = $forms->find($form);
 
-        $handler = $form->getHandler();
+        $handler = $form->getFormHandler();
         $builder = $handler->builder($form);
 
         return $generic
