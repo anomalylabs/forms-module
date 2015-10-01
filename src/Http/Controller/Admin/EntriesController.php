@@ -40,6 +40,7 @@ class EntriesController extends AdminController
             ->setModel($stream->getEntryModel())
             ->setFilters($form->getViewOptions())
             ->setColumns($form->getViewOptions())
+            ->setActions(['delete'])
             ->setButtons(
                 [
                     'view' => [
