@@ -38,8 +38,8 @@ class EntriesController extends AdminController
 
         return $table
             ->setModel($stream->getEntryModel())
-            ->setFilters($form->getViewOptions())
-            ->setColumns($form->getViewOptions())
+            ->setFilters($form->getFormViewOptions())
+            ->setColumns($form->getFormViewOptions())
             ->setActions(['delete'])
             ->setButtons(
                 [
