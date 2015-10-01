@@ -36,6 +36,7 @@ class FormsModuleServiceProvider extends AddonServiceProvider
         'admin/forms/choose'                             => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@choose',
         'admin/forms/create'                             => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@create',
         'admin/forms/edit/{id}'                          => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@edit',
+        'admin/forms/help/{id}'                          => 'Anomaly\FormsModule\Http\Controller\Admin\FormsController@help',
         'admin/forms/entries/{form}'                     => 'Anomaly\FormsModule\Http\Controller\Admin\EntriesController@index',
         'admin/forms/entries/{form}/view/{id}'           => 'Anomaly\FormsModule\Http\Controller\Admin\EntriesController@view',
         'admin/forms/notifications'                      => 'Anomaly\FormsModule\Http\Controller\Admin\NotificationsController@index',

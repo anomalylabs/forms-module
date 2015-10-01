@@ -1,5 +1,6 @@
 <?php namespace Anomaly\FormsModule\Http\Controller\Admin;
 
+use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\FormsModule\Form\Form\FormFormBuilder;
 use Anomaly\FormsModule\Form\Handler\Contract\FormHandlerRepositoryInterface;
 use Anomaly\FormsModule\Form\Table\FormTableBuilder;
@@ -61,5 +62,17 @@ class FormsController extends AdminController
     public function edit(FormFormBuilder $form, $id)
     {
         return $form->render($id);
+    }
+
+    /**
+     * Return a help dialog.
+     *
+     * @param FormRepositoryInterface $forms
+     * @param                         $id
+     * @return \Illuminate\View\View
+     */
+    public function help(FormRepositoryInterface $forms, $id)
+    {
+        return view('module::admin/forms/help', ['form' => $forms->find($id)]);
     }
 }
