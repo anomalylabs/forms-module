@@ -46,6 +46,52 @@ class FormFormBuilder extends FormBuilder
     ];
 
     /**
+     * The form sections.
+     *
+     * @var array
+     */
+    protected $sections = [
+        [
+            'tabs' => [
+                'form'          => [
+                    'title'  => 'module::tab.form',
+                    'fields' => [
+                        'form_name',
+                        'form_slug',
+                        'form_description',
+                        'success_message',
+                        'success_redirect'
+                    ]
+                ],
+                'notification'  => [
+                    'title'  => 'module::tab.notification',
+                    'fields' => [
+                        'send_notification',
+                        'notification',
+                        'notification_send_to',
+                        'notification_cc',
+                        'notification_bcc'
+                    ]
+                ],
+                'autoresponder' => [
+                    'title'  => 'module::tab.autoresponder',
+                    'fields' => [
+                        'send_autoresponder',
+                        'autoresponder',
+                        'user_email_field'
+                    ]
+                ],
+                'options'       => [
+                    'title'  => 'module::tab.options',
+                    'fields' => [
+                        'form_view_options'
+                    ]
+                ]
+            ]
+        ]
+    ];
+
+    /**
      * Fired when builder is ready to build.
      *
      * @throws \Exception
@@ -65,7 +111,7 @@ class FormFormBuilder extends FormBuilder
         $entry = $this->getFormEntry();
 
         if (!$entry->exists) {
-            $entry->form_handler = $this->getFormHandler();
+            $entry->handler = $this->getFormHandler();
         }
     }
 
