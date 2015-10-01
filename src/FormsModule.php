@@ -50,16 +50,6 @@ class FormsModule extends Module
                 'new_notification'
             ]
         ],
-        'actions'       => [
-            'buttons' => [
-                'new_action'
-            ]
-        ],
-        'buttons'       => [
-            'buttons' => [
-                'new_button'
-            ]
-        ],
         'fields'        => [
             'buttons' => [
                 'new_field' => [

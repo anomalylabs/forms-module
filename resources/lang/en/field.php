@@ -4,6 +4,9 @@ return [
     'form_name'                   => [
         'name' => 'Name'
     ],
+    'form_description'            => [
+        'name' => 'Description'
+    ],
     'form_slug'                   => [
         'name' => 'Slug'
     ],
@@ -20,8 +23,15 @@ return [
     'success_redirect'            => [
         'name' => 'Success Redirect'
     ],
+    'send_notification'           => [
+        'name'  => 'Send Notification',
+        'label' => 'Send notifications?'
+    ],
     'notification_name'           => [
         'name' => 'Name'
+    ],
+    'notification_description'    => [
+        'name' => 'Description'
     ],
     'notification_slug'           => [
         'name' => 'Slug'
@@ -86,9 +96,16 @@ return [
         'name' => 'Buttons'
     ],
     'notification'                => [
-        'name' => 'Notification'
+        'name' => 'Notification Template'
+    ],
+    'user_email_field'            => [
+        'name' => 'User Email Field'
+    ],
+    'send_autoresponder'          => [
+        'name'  => 'Send Autoresponder',
+        'label' => 'Send autoresponder?'
     ],
     'autoresponder'               => [
-        'name' => 'Autoresponder'
+        'name' => 'Autoresponder Template'
     ]
 ];

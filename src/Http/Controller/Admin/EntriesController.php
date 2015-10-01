@@ -69,7 +69,7 @@ class EntriesController extends AdminController
         /* @var FormInterface $form */
         $form = $forms->find($form);
 
-        $handler = $form->getHandler();
+        $handler = $form->getFormHandler();
         $builder = $handler->builder($form);
 
         return $generic

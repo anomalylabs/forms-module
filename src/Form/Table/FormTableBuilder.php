@@ -28,9 +28,7 @@ class FormTableBuilder extends TableBuilder
     protected $columns = [
         'form_name',
         'form_slug',
-        'entry.handler.title',
-        'notification',
-        'autoresponder'
+        'entry.form_handler.title'
     ];
 
     /**

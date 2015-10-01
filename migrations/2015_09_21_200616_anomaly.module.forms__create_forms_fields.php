@@ -61,14 +61,6 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
         'notification_reply_to_name'  => 'anomaly.field_type.text',
         'notification_reply_to_email' => 'anomaly.field_type.text',
         'notification_subject'        => 'anomaly.field_type.text',
-        'notification_send_to'        => [
-            'type'   => 'anomaly.field_type.tags',
-            'config' => [
-                'filter' => [
-                    'FILTER_VALIDATE_EMAIL'
-                ]
-            ]
-        ],
         'notification_cc'             => [
             'type'   => 'anomaly.field_type.tags',
             'config' => [
@@ -85,10 +77,29 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
                 ]
             ]
         ],
+        'send_notification'           => 'anomaly.field_type.boolean',
+        'notification_send_to'        => [
+            'type'   => 'anomaly.field_type.tags',
+            'config' => [
+                'filter' => [
+                    'FILTER_VALIDATE_EMAIL'
+                ]
+            ]
+        ],
         'notification'                => [
             'type'   => 'anomaly.field_type.relationship',
             'config' => [
                 'related' => 'Anomaly\FormsModule\Notification\NotificationModel'
+            ]
+        ],
+        'send_autoresponder'          => 'anomaly.field_type.boolean',
+        'user_email_field'            => [
+            'type'   => 'anomaly.field_type.relationship',
+            'config' => [
+                'related'   => 'Anomaly\Streams\Platform\Field\FieldModel',
+                'handler'   => 'fields',
+                'namespace' => 'forms',
+                'unlocked'  => true
             ]
         ],
         'autoresponder'               => [
@@ -99,40 +110,7 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
         ],
         'include_attachments'         => 'anomaly.field_type.boolean',
         'success_message'             => 'anomaly.field_type.textarea',
-        'success_redirect'            => 'anomaly.field_type.text',
-        'button_type'                 => [
-            'type'   => 'anomaly.field_type.select',
-            'config' => [
-                'options' => [
-                    'default' => 'anomaly.module.forms::field.button_type.option.default',
-                    'success' => 'anomaly.module.forms::field.button_type.option.success',
-                    'warning' => 'anomaly.module.forms::field.button_type.option.warning',
-                    'danger'  => 'anomaly.module.forms::field.button_type.option.danger',
-                    'info'    => 'anomaly.module.forms::field.button_type.option.info',
-                    'link'    => 'anomaly.module.forms::field.button_type.option.link',
-                ]
-            ]
-        ],
-        'button_text'                 => 'anomaly.field_type.text',
-        'button_slug'                 => [
-            'type'   => 'anomaly.field_type.slug',
-            'config' => [
-                'slugify' => 'button_text'
-            ]
-        ],
-        'actions'                     => [
-            'type'   => 'anomaly.field_type.multiple',
-            'config' => [
-                'related' => 'Anomaly\FormsModule\Action\ActionModel'
-            ]
-        ],
-        'buttons'                     => [
-            'type'   => 'anomaly.field_type.multiple',
-            'config' => [
-                'related' => 'Anomaly\FormsModule\Button\ButtonModel'
-            ]
-        ],
-        'button_href'                 => 'anomaly.field_type.text'
+        'success_redirect'            => 'anomaly.field_type.text'
     ];
 
 }
