@@ -111,7 +111,7 @@ class FormFormBuilder extends FormBuilder
         $entry = $this->getFormEntry();
 
         if (!$entry->exists) {
-            $entry->handler_handler = $this->getFormHandler();
+            $entry->form_handler = $this->getFormHandler();
         }
     }
 
