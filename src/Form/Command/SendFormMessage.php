@@ -1,6 +1,7 @@
 <?php namespace Anomaly\FormsModule\Form\Command;
 
 use Anomaly\FormsModule\Form\Contract\FormInterface;
+use Anomaly\Streams\Platform\Support\String;
 use Anomaly\Streams\Platform\Support\Value;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\WysiwygFieldType\WysiwygFieldType;
@@ -36,7 +37,7 @@ class SendFormMessage implements SelfHandling
         $this->builder = $builder;
     }
 
-    public function handle(Mailer $mailer, Value $value)
+    public function handle(Mailer $mailer, Value $value, String $string)
     {
         /* @var FormInterface $config */
         $config = $this->builder->getOption('config');

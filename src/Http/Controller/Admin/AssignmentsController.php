@@ -36,6 +36,14 @@ class AssignmentsController extends AdminController
         /* @var FormInterface $form */
         $form = $forms->find($id);
 
+        $table->setButtons(
+            [
+                'edit' => [
+                    'href' => 'admin/forms/assignments/' . $form->getId() . '/edit/{entry.id}'
+                ]
+            ]
+        );
+
         return $table->setStream($streams->findBySlugAndNamespace($form->getFormSlug(), 'forms'))->render();
     }
 
@@ -96,5 +104,32 @@ class AssignmentsController extends AdminController
             ->setField($fields->find($field))
             ->setStream($stream)
             ->render();
+    }
+
+    /**
+     * Edit an existing field assignment.
+     *
+     * @param AssignmentFormBuilder     $builder
+     * @param FormRepositoryInterface   $forms
+     * @param StreamRepositoryInterface $streams
+     * @param                           $id
+     * @param                           $assignment
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function edit(
+        AssignmentFormBuilder $builder,
+        FormRepositoryInterface $forms,
+        StreamRepositoryInterface $streams,
+        $id,
+        $assignment
+    ) {
+        /* @var FormInterface $form */
+        $form   = $forms->find($id);
+        $stream = $streams->findBySlugAndNamespace($form->getFormSlug(), 'forms');
+
+        return $builder
+            ->setOption('redirect', 'admin/forms/assignments/' . $id)
+            ->setStream($stream)
+            ->render($assignment);
     }
 }

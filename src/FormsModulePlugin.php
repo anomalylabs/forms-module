@@ -2,7 +2,10 @@
 
 use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Addon\Plugin\Plugin;
+use Anomaly\Streams\Platform\Assignment\Contract\AssignmentInterface;
+use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Support\Decorator;
+use Anomaly\Streams\Platform\Support\Presenter;
 
 /**
  * Class FormsModulePlugin
@@ -50,6 +53,7 @@ class FormsModulePlugin extends Plugin
     {
         return [
             new \Twig_SimpleFunction('forms_get', [$this, 'get'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFunction('forms_input', [$this, 'input'], ['is_safe' => ['html']]),
             new \Twig_SimpleFunction('forms_display', [$this, 'get'], ['is_safe' => ['html']])
         ];
     }
@@ -72,5 +76,34 @@ class FormsModulePlugin extends Plugin
         return $this->decorator->decorate(
             $builder->make()->getForm()
         );
+    }
+
+    /**
+     * Return the form input.
+     *
+     * @param $input
+     */
+    public function input($input)
+    {
+        $output = '';
+
+        if ($input instanceof Presenter) {
+            $input = $input->getObject();
+        }
+
+        /* @var EntryInterface $input */
+        /* @var AssignmentInterface $assignment */
+        foreach ($input->getAssignments() as $assignment) {
+
+            $value = $input->getFieldValue($assignment->getFieldSlug());
+
+            if (is_array($value)) {
+                $value = implode(', ', $value);
+            }
+
+            $output .= "<strong>{$assignment->getFieldName()}: </strong> {$value}<br>";
+        }
+
+        return $output;
     }
 }
