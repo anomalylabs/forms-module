@@ -21,16 +21,6 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
 {
 
     /**
-     * Boot the model.
-     */
-    protected static function boot()
-    {
-        self::observe(app(substr(__CLASS__, 0, -5) . 'Observer'));
-
-        parent::boot();
-    }
-
-    /**
      * Get the form handler.
      *
      * @return FormHandlerExtensionInterface
