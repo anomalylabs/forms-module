@@ -39,7 +39,7 @@ class AssignmentsController extends AdminController
         $table->setButtons(
             [
                 'edit' => [
-                    'href' => 'admin/forms/assignments/' . $form->getId() . '/edit/{entry.assignment.id}'
+                    'href' => 'admin/forms/assignments/' . $form->getId() . '/edit/{entry.id}'
                 ]
             ]
         );
