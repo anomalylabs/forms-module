@@ -20,7 +20,8 @@ class AnomalyModuleFormsCreateFormsStream extends Migration
     protected $stream = [
         'slug'         => 'forms',
         'title_column' => 'form_name',
-        'translatable' => true
+        'translatable' => true,
+        'trashable'    => true
     ];
 
     /**

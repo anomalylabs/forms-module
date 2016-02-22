@@ -20,7 +20,8 @@ class AnomalyModuleFormsCreateNotificationsStream extends Migration
     protected $stream = [
         'slug'         => 'notifications',
         'title_column' => 'notification_name',
-        'translatable' => true
+        'translatable' => true,
+        'trashable'    => true
     ];
 
     /**

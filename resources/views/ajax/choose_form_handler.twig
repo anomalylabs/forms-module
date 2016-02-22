@@ -6,10 +6,10 @@
 </div>
 
 <div class="modal-body">
-    <ul class="nav nav-stacked">
+    <ul class="nav nav-pills nav-stacked">
         {% for extension in extensions %}
-            <li>
-                <a href="{{ url_to('admin/forms/create?form_handler=' ~ extension.namespace) }}">
+            <li class="nav-item">
+                <a href="{{ url_to('admin/forms/create?form_handler=' ~ extension.namespace) }}" class="nav-link">
                     <strong>{{ trans(extension.getTitle()) }}</strong>
                     <br>
                     <small>{{ trans(extension.getDescription()) }}</small>
