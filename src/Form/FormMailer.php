@@ -82,7 +82,7 @@ class FormMailer
 
         $this->mailer->send(
             $email->getViewPath(),
-            compact('input'),
+            compact('input', 'form'),
             function (Message $message) use ($form, $entry, $builder, $notification) {
 
                 $message->cc($form->getNotificationCc());
