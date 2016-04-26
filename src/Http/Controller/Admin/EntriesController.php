@@ -40,7 +40,7 @@ class EntriesController extends AdminController
             ->setModel($stream->getEntryModel())
             ->setFilters($form->getFormViewOptions())
             ->setColumns(array_merge(['entry.created_at'], $form->getFormViewOptions()))
-            ->setActions(['delete'])
+            ->setActions(['delete', 'export'])
             ->setButtons(
                 [
                     'view' => [
