@@ -55,7 +55,12 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
                 'handler' => 'emails'
             ]
         ],
-        'notification_content'        => 'anomaly.field_type.wysiwyg',
+        'notification_content'        => [
+            'type'   => 'anomaly.field_type.wysiwyg',
+            'config' => [
+                'default_value' => '<h3>{{ form.form_name }}</h3><hr><p><em>{{ form.form_description }}</em><br>{{ forms_input(input)|raw }}</p>'
+            ]
+        ],
         'notification_from_name'      => 'anomaly.field_type.text',
         'notification_from_email'     => 'anomaly.field_type.text',
         'notification_reply_to_name'  => 'anomaly.field_type.text',
