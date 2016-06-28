@@ -64,8 +64,9 @@ class FormsModuleServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $singletons = [
-        'Anomaly\FormsModule\Form\Contract\FormRepositoryInterface'                => 'Anomaly\FormsModule\Form\FormRepository',
-        'Anomaly\FormsModule\Form\Handler\Contract\FormHandlerRepositoryInterface' => 'Anomaly\FormsModule\Form\Handler\FormHandlerRepository'
+        'Anomaly\FormsModule\Form\Contract\FormRepositoryInterface'                 => 'Anomaly\FormsModule\Form\FormRepository',
+        'Anomaly\FormsModule\Notification\Contract\NotificationRepositoryInterface' => 'Anomaly\FormsModule\Notification\NotificationRepository',
+        'Anomaly\FormsModule\Form\Handler\Contract\FormHandlerRepositoryInterface'  => 'Anomaly\FormsModule\Form\Handler\FormHandlerRepository'
     ];
 
 }
