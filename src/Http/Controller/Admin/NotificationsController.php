@@ -33,7 +33,7 @@ class NotificationsController extends AdminController
      * Edit an existing entry.
      *
      * @param NotificationFormBuilder $form
-     * @param        $id
+     * @param                         $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(NotificationFormBuilder $form, $id)

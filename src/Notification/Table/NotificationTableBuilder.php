@@ -20,7 +20,7 @@ class NotificationTableBuilder extends TableBuilder
      */
     protected $columns = [
         'notification_name',
-        'notification_description'
+        'notification_description',
     ];
 
     /**
@@ -29,7 +29,7 @@ class NotificationTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $buttons = [
-        'edit'
+        'edit',
     ];
 
     /**
@@ -38,7 +38,7 @@ class NotificationTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $actions = [
-        'delete'
+        'delete',
     ];
 
 }

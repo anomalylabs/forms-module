@@ -28,8 +28,8 @@ class NotificationFormBuilder extends FormBuilder
                         'notification_slug',
                         'notification_description',
                         'success_message',
-                        'success_redirect'
-                    ]
+                        'success_redirect',
+                    ],
                 ],
                 'message' => [
                     'title'  => 'module::tab.message',
@@ -39,18 +39,18 @@ class NotificationFormBuilder extends FormBuilder
                         'notification_reply_to_name',
                         'notification_reply_to_email',
                         'notification_subject',
-                    ]
+                    ],
                 ],
                 'content' => [
                     'title'  => 'module::tab.content',
                     'fields' => [
                         'include_attachments',
                         'notification_email_layout',
-                        'notification_content'
-                    ]
-                ]
-            ]
-        ]
+                        'notification_content',
+                    ],
+                ],
+            ],
+        ],
     ];
 
 }

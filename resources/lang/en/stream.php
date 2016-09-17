@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'forms'      => [
-        'name' => 'Forms'
+    'forms'         => [
+        'name' => 'Forms',
     ],
     'notifications' => [
-        'name' => 'Form Notifications'
-    ]
+        'name' => 'Form Notifications',
+    ],
 ];

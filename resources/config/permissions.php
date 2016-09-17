@@ -1,17 +1,17 @@
 <?php
 
 return [
-    'forms'      => [
+    'forms'         => [
         'read',
         'write',
-        'delete'
+        'delete',
     ],
     'notifications' => [
         'read',
         'write',
-        'delete'
+        'delete',
     ],
-    'fields'     => [
-        'manage'
-    ]
+    'fields'        => [
+        'manage',
+    ],
 ];

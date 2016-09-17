@@ -54,7 +54,7 @@ class FormsModulePlugin extends Plugin
         return [
             new \Twig_SimpleFunction('forms_get', [$this, 'get'], ['is_safe' => ['html']]),
             new \Twig_SimpleFunction('forms_input', [$this, 'input'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('forms_display', [$this, 'get'], ['is_safe' => ['html']])
+            new \Twig_SimpleFunction('forms_display', [$this, 'get'], ['is_safe' => ['html']]),
         ];
     }
 

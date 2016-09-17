@@ -33,7 +33,7 @@ class ButtonsController extends AdminController
      * Edit an existing entry.
      *
      * @param ButtonFormBuilder $form
-     * @param        $id
+     * @param                   $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(ButtonFormBuilder $form, $id)

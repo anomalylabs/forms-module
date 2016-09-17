@@ -19,9 +19,9 @@ class EntriesController extends AdminController
 {
 
     /**
-     * @param TableBuilder $table
+     * @param TableBuilder              $table
      * @param StreamRepositoryInterface $streams
-     * @param FormRepositoryInterface $forms
+     * @param FormRepositoryInterface   $forms
      * @param                           $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -44,15 +44,15 @@ class EntriesController extends AdminController
             ->setButtons(
                 [
                     'view' => [
-                        'href' => 'admin/forms/entries/{request.route.parameters.form}/view/{entry.id}'
-                    ]
+                        'href' => 'admin/forms/entries/{request.route.parameters.form}/view/{entry.id}',
+                    ],
                 ]
             )
             ->setOptions(
                 [
                     'order_by' => [
-                        'created_at' => 'DESC'
-                    ]
+                        'created_at' => 'DESC',
+                    ],
                 ]
             )
             ->render();
@@ -61,7 +61,7 @@ class EntriesController extends AdminController
     /**
      * Return the readonly view for an entry.
      *
-     * @param FormBuilder $generic
+     * @param FormBuilder             $generic
      * @param FormRepositoryInterface $forms
      * @param                         $form
      * @param                         $id

@@ -13,5 +13,7 @@
         <small>{{ trans('module::help.displaying_a_form_instructions') }}</small>
     </h3>
 
-    <input class="form-control" disabled value="{% verbatim %}{{ forms_display('{% endverbatim %}{{ form.form_slug }}{% verbatim %}') }}{% endverbatim %}" style="cursor: copy;">
+    <input class="form-control" disabled
+           value="{% verbatim %}{{ forms_display('{% endverbatim %}{{ form.form_slug }}{% verbatim %}') }}{% endverbatim %}"
+           style="cursor: copy;">
 </div>

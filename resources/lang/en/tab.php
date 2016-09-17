@@ -7,5 +7,5 @@ return [
     'content'       => 'Content',
     'message'       => 'Message',
     'notification'  => 'Notification',
-    'autoresponder' => 'Autoresponder'
+    'autoresponder' => 'Autoresponder',
 ];

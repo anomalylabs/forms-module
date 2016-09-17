@@ -39,8 +39,8 @@ class AssignmentsController extends AdminController
         $table->setButtons(
             [
                 'edit' => [
-                    'href' => 'admin/forms/assignments/' . $form->getId() . '/edit/{entry.id}'
-                ]
+                    'href' => 'admin/forms/assignments/' . $form->getId() . '/edit/{entry.id}',
+                ],
             ]
         );
 
@@ -71,7 +71,7 @@ class AssignmentsController extends AdminController
             'module::ajax/choose_field',
             [
                 'fields' => $fields->findAllByNamespace('forms')->notAssignedTo($stream)->unlocked(),
-                'id'     => $id
+                'id'     => $id,
             ]
         );
     }

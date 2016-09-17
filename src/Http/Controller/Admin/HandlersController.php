@@ -33,7 +33,7 @@ class HandlersController extends AdminController
      * Edit an existing entry.
      *
      * @param HandlerFormBuilder $form
-     * @param        $id
+     * @param                    $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(HandlerFormBuilder $form, $id)

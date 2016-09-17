@@ -10,6 +10,6 @@ return [
         'actions'       => 'Actions',
         'buttons'       => 'Bouttons',
         'assignments'   => 'Assignements',
-        'notifications' => 'Notifications'
-    ]
+        'notifications' => 'Notifications',
+    ],
 ];

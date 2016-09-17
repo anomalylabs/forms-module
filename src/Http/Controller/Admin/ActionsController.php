@@ -33,7 +33,7 @@ class ActionsController extends AdminController
      * Edit an existing entry.
      *
      * @param ActionFormBuilder $form
-     * @param        $id
+     * @param                   $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function edit(ActionFormBuilder $form, $id)

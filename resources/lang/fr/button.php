@@ -6,5 +6,5 @@ return [
     'new_field'        => 'Créer champs',
     'new_action'       => 'Nouvelle action',
     'new_button'       => 'Nouveau bouton',
-    'new_notification' => 'Nouvelle notification'
+    'new_notification' => 'Nouvelle notification',
 ];

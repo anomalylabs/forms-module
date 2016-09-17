@@ -27,14 +27,14 @@ class FormsModuleSections
                         'new_form' => [
                             'data-toggle' => 'modal',
                             'data-target' => '#modal',
-                            'href'        => 'admin/forms/choose'
+                            'href'        => 'admin/forms/choose',
                         ],
                         'export'   => [
                             'enabled'   => 'admin/forms/entries/*',
                             'namespace' => 'forms',
-                            'stream'    => 'contact'
-                        ]
-                    ]
+                            'stream'    => 'contact',
+                        ],
+                    ],
                 ],
                 'assignments'   => [
                     'parent'  => 'forms',
@@ -42,24 +42,24 @@ class FormsModuleSections
                         'add_field' => [
                             'data-toggle' => 'modal',
                             'data-target' => '#modal',
-                            'href'        => 'admin/forms/assignments/{request.route.parameters.id}/choose'
-                        ]
-                    ]
+                            'href'        => 'admin/forms/assignments/{request.route.parameters.id}/choose',
+                        ],
+                    ],
                 ],
                 'notifications' => [
                     'buttons' => [
-                        'new_notification'
-                    ]
+                        'new_notification',
+                    ],
                 ],
                 'fields'        => [
                     'buttons' => [
                         'new_field' => [
                             'data-toggle' => 'modal',
                             'data-target' => '#modal',
-                            'href'        => 'admin/forms/fields/choose'
-                        ]
-                    ]
-                ]
+                            'href'        => 'admin/forms/fields/choose',
+                        ],
+                    ],
+                ],
             ]
         );
     }

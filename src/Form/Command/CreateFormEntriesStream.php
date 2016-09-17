@@ -2,7 +2,7 @@
 
 use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
-use Illuminate\Contracts\Bus\SelfHandling;
+
 
 /**
  * Class CreateFormEntriesStream
@@ -12,7 +12,7 @@ use Illuminate\Contracts\Bus\SelfHandling;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\FormsModule\Form\Command
  */
-class CreateFormEntriesStream implements SelfHandling
+class CreateFormEntriesStream
 {
 
     /**
@@ -43,7 +43,7 @@ class CreateFormEntriesStream implements SelfHandling
             [
                 'namespace'    => 'forms',
                 'slug'         => $this->form->getFormSlug(),
-                'translatable' => true
+                'translatable' => true,
             ]
         );
     }

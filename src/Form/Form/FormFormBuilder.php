@@ -29,11 +29,11 @@ class FormFormBuilder extends FormBuilder
     protected $fields = [
         '*',
         'form_slug'         => [
-            'disabled' => 'edit'
+            'disabled' => 'edit',
         ],
         'form_view_options' => [
-            'enabled' => 'edit'
-        ]
+            'enabled' => 'edit',
+        ],
     ];
 
     /**
@@ -42,7 +42,7 @@ class FormFormBuilder extends FormBuilder
      * @var array
      */
     protected $skips = [
-        'form_handler'
+        'form_handler',
     ];
 
     /**
@@ -60,8 +60,8 @@ class FormFormBuilder extends FormBuilder
                         'form_slug',
                         'form_description',
                         'success_message',
-                        'success_redirect'
-                    ]
+                        'success_redirect',
+                    ],
                 ],
                 'notification'  => [
                     'title'  => 'module::tab.notification',
@@ -70,25 +70,25 @@ class FormFormBuilder extends FormBuilder
                         'notification',
                         'notification_send_to',
                         'notification_cc',
-                        'notification_bcc'
-                    ]
+                        'notification_bcc',
+                    ],
                 ],
                 'autoresponder' => [
                     'title'  => 'module::tab.autoresponder',
                     'fields' => [
                         'send_autoresponder',
                         'autoresponder',
-                        'user_email_field'
-                    ]
+                        'user_email_field',
+                    ],
                 ],
                 'options'       => [
                     'title'  => 'module::tab.options',
                     'fields' => [
-                        'form_view_options'
-                    ]
-                ]
-            ]
-        ]
+                        'form_view_options',
+                    ],
+                ],
+            ],
+        ],
     ];
 
     /**
@@ -100,18 +100,6 @@ class FormFormBuilder extends FormBuilder
     {
         if (!$this->getFormHandler() && !$this->getEntry()) {
             throw new \Exception('The $formHandler parameter is required when creating a form.');
-        }
-    }
-
-    /**
-     * Fired when form is saving.
-     */
-    public function onSaving()
-    {
-        $entry = $this->getFormEntry();
-
-        if (!$entry->exists) {
-            $entry->form_handler = $this->getFormHandler();
         }
     }
 
@@ -136,5 +124,17 @@ class FormFormBuilder extends FormBuilder
         $this->formHandler = $formHandler;
 
         return $this;
+    }
+
+    /**
+     * Fired when form is saving.
+     */
+    public function onSaving()
+    {
+        $entry = $this->getFormEntry();
+
+        if (!$entry->exists) {
+            $entry->form_handler = $this->getFormHandler();
+        }
     }
 }

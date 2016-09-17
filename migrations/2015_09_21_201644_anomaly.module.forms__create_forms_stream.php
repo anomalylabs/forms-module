@@ -21,7 +21,7 @@ class AnomalyModuleFormsCreateFormsStream extends Migration
         'slug'         => 'forms',
         'title_column' => 'form_name',
         'translatable' => true,
-        'trashable'    => true
+        'trashable'    => true,
     ];
 
     /**
@@ -31,39 +31,39 @@ class AnomalyModuleFormsCreateFormsStream extends Migration
      */
     protected $assignments = [
         'form_name'            => [
-            'required' => true
+            'required' => true,
         ],
         'form_description',
         'form_slug'            => [
             'unique'   => true,
-            'required' => true
+            'required' => true,
         ],
         'form_handler'         => [
-            'required' => true
+            'required' => true,
         ],
         'form_view_options',
         'success_message'      => [
-            'translatable' => true
+            'translatable' => true,
         ],
         'success_redirect'     => [
-            'translatable' => true
+            'translatable' => true,
         ],
         'send_notification',
         'notification_send_to' => [
-            'translatable' => true
+            'translatable' => true,
         ],
         'notification_cc'      => [
-            'translatable' => true
+            'translatable' => true,
         ],
         'notification_bcc'     => [
-            'translatable' => true
+            'translatable' => true,
         ],
         'notification',
         'send_autoresponder',
         'user_email_field',
         'autoresponder',
         'actions',
-        'buttons'
+        'buttons',
     ];
 
 }

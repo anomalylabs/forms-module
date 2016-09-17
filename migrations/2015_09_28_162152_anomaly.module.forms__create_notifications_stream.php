@@ -21,7 +21,7 @@ class AnomalyModuleFormsCreateNotificationsStream extends Migration
         'slug'         => 'notifications',
         'title_column' => 'notification_name',
         'translatable' => true,
-        'trashable'    => true
+        'trashable'    => true,
     ];
 
     /**
@@ -31,36 +31,36 @@ class AnomalyModuleFormsCreateNotificationsStream extends Migration
      */
     protected $assignments = [
         'notification_name'           => [
-            'required' => true
+            'required' => true,
         ],
         'notification_description',
         'notification_slug'           => [
             'unique'   => true,
-            'required' => true
+            'required' => true,
         ],
         'notification_email_layout',
         'notification_content'        => [
             'required'     => true,
-            'translatable' => true
+            'translatable' => true,
         ],
         'notification_from_name'      => [
             'required'     => true,
-            'translatable' => true
+            'translatable' => true,
         ],
         'notification_from_email'     => [
-            'required' => true
+            'required' => true,
         ],
         'notification_reply_to_name'  => [
-            'required' => true
+            'required' => true,
         ],
         'notification_reply_to_email' => [
-            'required' => true
+            'required' => true,
         ],
         'notification_subject'        => [
             'required'     => true,
-            'translatable' => true
+            'translatable' => true,
         ],
-        'include_attachments'
+        'include_attachments',
     ];
 
 }

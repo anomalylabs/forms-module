@@ -28,7 +28,7 @@ class FormTableBuilder extends TableBuilder
     protected $columns = [
         'form_name',
         'form_slug',
-        'entry.form_handler.title'
+        'entry.form_handler.title',
     ];
 
     /**
@@ -40,7 +40,7 @@ class FormTableBuilder extends TableBuilder
         'help',
         'edit',
         'entries',
-        'assignments'
+        'assignments',
     ];
 
     /**
@@ -49,7 +49,7 @@ class FormTableBuilder extends TableBuilder
      * @var array|string
      */
     protected $actions = [
-        'delete'
+        'delete',
     ];
 
 }

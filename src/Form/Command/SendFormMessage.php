@@ -5,7 +5,6 @@ use Anomaly\Streams\Platform\Support\String;
 use Anomaly\Streams\Platform\Support\Value;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\WysiwygFieldType\WysiwygFieldType;
-use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Mail\Message;
 
@@ -17,7 +16,7 @@ use Illuminate\Mail\Message;
  * @author        Ryan Thompson <ryan@anomaly.is>
  * @package       Anomaly\FormsModule\Form\Command
  */
-class SendFormMessage implements SelfHandling
+class SendFormMessage
 {
 
     /**
