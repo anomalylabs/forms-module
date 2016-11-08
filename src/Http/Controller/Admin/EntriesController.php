@@ -1,11 +1,11 @@
 <?php namespace Anomaly\FormsModule\Http\Controller\Admin;
 
+use Anomaly\FormsModule\Entry\Table\EntryTableBuilder;
 use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
 /**
  * Class EntriesController
@@ -19,14 +19,14 @@ class EntriesController extends AdminController
 {
 
     /**
-     * @param TableBuilder $table
+     * @param EntryTableBuilder $table
      * @param StreamRepositoryInterface $streams
      * @param FormRepositoryInterface $forms
      * @param                           $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(
-        TableBuilder $table,
+        EntryTableBuilder $table,
         StreamRepositoryInterface $streams,
         FormRepositoryInterface $forms,
         $form
