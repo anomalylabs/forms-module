@@ -19,9 +19,9 @@ class EntriesController extends AdminController
 {
 
     /**
-     * @param TableBuilder              $table
+     * @param TableBuilder $table
      * @param StreamRepositoryInterface $streams
-     * @param FormRepositoryInterface   $forms
+     * @param FormRepositoryInterface $forms
      * @param                           $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -40,28 +40,13 @@ class EntriesController extends AdminController
             ->setModel($stream->getEntryModel())
             ->setFilters($form->getFormViewOptions())
             ->setColumns(array_merge(['entry.created_at'], $form->getFormViewOptions()))
-            ->setActions(['delete', 'export'])
-            ->setButtons(
-                [
-                    'view' => [
-                        'href' => 'admin/forms/entries/{request.route.parameters.form}/view/{entry.id}',
-                    ],
-                ]
-            )
-            ->setOptions(
-                [
-                    'order_by' => [
-                        'created_at' => 'DESC',
-                    ],
-                ]
-            )
             ->render();
     }
 
     /**
      * Return the readonly view for an entry.
      *
-     * @param FormBuilder             $generic
+     * @param FormBuilder $generic
      * @param FormRepositoryInterface $forms
      * @param                         $form
      * @param                         $id

@@ -75,6 +75,10 @@ class FormMailer
             return;
         }
 
+        if (!$form->getNotificationSendTo()) {
+            return;
+        }
+
         $notification = $form->getNotification();
 
         /* @var WysiwygFieldType $email */
