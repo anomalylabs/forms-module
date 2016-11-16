@@ -31,12 +31,17 @@ class FormsController extends PublicController
         $handler = $form->getFormHandler();
         $builder = $handler->builder($form);
 
-        $builder->handle();
+        $response = $builder
+            ->build()
+            ->post()
+            ->getFormResponse();
+
+        $builder->flash();
 
         if ($builder->hasFormErrors()) {
             return $redirect->back();
         }
 
-        return $builder->getFormResponse();
+        return $response;
     }
 }
