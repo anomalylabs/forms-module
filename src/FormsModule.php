@@ -56,4 +56,11 @@ class FormsModule extends Module
             ],
         ],
     ];
+
+    /*
+     * The addon icon.
+     *
+     * @var string
+     */
+    protected $icon = 'glyphicons glyphicons-notes-2';
 }
