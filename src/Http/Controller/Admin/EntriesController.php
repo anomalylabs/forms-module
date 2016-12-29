@@ -2,10 +2,10 @@
 
 use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
+use Anomaly\FormsModule\FormsModule;
 use Anomaly\Streams\Platform\Http\Controller\AdminController;
 use Anomaly\Streams\Platform\Stream\Contract\StreamRepositoryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Anomaly\Streams\Platform\Ui\Table\TableBuilder;
 
 /**
  * Class EntriesController
@@ -19,14 +19,40 @@ class EntriesController extends AdminController
 {
 
     /**
-     * @param TableBuilder              $table
+     * Create a new EntriesController instance.
+     *
+     * @param FormsModule             $module
+     * @param FormRepositoryInterface $forms
+     */
+    public function __construct(FormsModule $module, FormRepositoryInterface $forms)
+    {
+        parent::__construct();
+
+        /* @var FormInterface $form */
+        $form = $forms->find($this->route->getParameter('form'));
+
+        $stream = $form->getFormEntriesStream();
+
+        $module->addSectionButton(
+            'entries',
+            'export',
+            [
+                'enabled'   => 'admin/forms/entries/*',
+                'namespace' => $stream->getNamespace(),
+                'stream'    => $stream->getSlug(),
+            ]
+        );
+    }
+
+    /**
+     * @param EntryTableBuilder         $table
      * @param StreamRepositoryInterface $streams
      * @param FormRepositoryInterface   $forms
      * @param                           $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index(
-        TableBuilder $table,
+        EntryTableBuilder $table,
         StreamRepositoryInterface $streams,
         FormRepositoryInterface $forms,
         $form
@@ -40,21 +66,6 @@ class EntriesController extends AdminController
             ->setModel($stream->getEntryModel())
             ->setFilters($form->getFormViewOptions())
             ->setColumns(array_merge(['entry.created_at'], $form->getFormViewOptions()))
-            ->setActions(['delete', 'export'])
-            ->setButtons(
-                [
-                    'view' => [
-                        'href' => 'admin/forms/entries/{request.route.parameters.form}/view/{entry.id}',
-                    ],
-                ]
-            )
-            ->setOptions(
-                [
-                    'order_by' => [
-                        'created_at' => 'DESC',
-                    ],
-                ]
-            )
             ->render();
     }
 

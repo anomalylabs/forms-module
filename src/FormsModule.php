@@ -13,4 +13,47 @@ use Anomaly\Streams\Platform\Addon\Module\Module;
 class FormsModule extends Module
 {
 
+    /**
+     * The module sections.
+     *
+     * @var array
+     */
+    protected $sections = [
+        'forms'         => [
+            'buttons' => [
+                'new_form' => [
+                    'data-toggle' => 'modal',
+                    'data-target' => '#modal',
+                    'href'        => 'admin/forms/choose',
+                ],
+            ],
+        ],
+        'entries'       => [
+            'parent' => 'forms',
+        ],
+        'assignments'   => [
+            'parent'  => 'forms',
+            'buttons' => [
+                'add_field' => [
+                    'data-toggle' => 'modal',
+                    'data-target' => '#modal',
+                    'href'        => 'admin/forms/assignments/{request.route.parameters.id}/choose',
+                ],
+            ],
+        ],
+        'notifications' => [
+            'buttons' => [
+                'new_notification',
+            ],
+        ],
+        'fields'        => [
+            'buttons' => [
+                'new_field' => [
+                    'data-toggle' => 'modal',
+                    'data-target' => '#modal',
+                    'href'        => 'admin/forms/fields/choose',
+                ],
+            ],
+        ],
+    ];
 }
