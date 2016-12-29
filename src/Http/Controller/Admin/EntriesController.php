@@ -1,5 +1,6 @@
 <?php namespace Anomaly\FormsModule\Http\Controller\Admin;
 
+use Anomaly\FormsModule\Entry\Table\EntryTableBuilder;
 use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\FormsModule\FormsModule;
