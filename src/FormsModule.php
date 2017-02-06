@@ -30,6 +30,7 @@ class FormsModule extends Module
         ],
         'entries'       => [
             'parent' => 'forms',
+            'href'   => 'admin/forms/entries/{request.route.parameters.form}',
         ],
         'assignments'   => [
             'parent'  => 'forms',
