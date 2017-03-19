@@ -29,6 +29,11 @@ class EntriesController extends AdminController
     {
         parent::__construct();
 
+        // No route in CLI
+        if (PHP_SAPI == 'cli') {
+            return;
+        }
+
         /* @var FormInterface $form */
         $form = $forms->find($this->route->getParameter('form'));
 
