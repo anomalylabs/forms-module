@@ -33,6 +33,7 @@ class FormsModule extends Module
             'href'   => 'admin/forms/entries/{request.route.parameters.form}',
         ],
         'assignments'   => [
+            'hidden'  => true,
             'parent'  => 'forms',
             'buttons' => [
                 'add_field' => [
