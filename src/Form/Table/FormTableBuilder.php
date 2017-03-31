@@ -40,7 +40,9 @@ class FormTableBuilder extends TableBuilder
         'help',
         'edit',
         'entries',
-        'assignments',
+        'assignments' => [
+            'href' => 'admin/forms/assignments/{entry.stream.id}',
+        ],
     ];
 
     /**

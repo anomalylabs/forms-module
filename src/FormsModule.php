@@ -13,6 +13,13 @@ use Anomaly\Streams\Platform\Addon\Module\Module;
 class FormsModule extends Module
 {
 
+    /*
+     * The addon icon.
+     *
+     * @var string
+     */
+    protected $icon = 'glyphicons glyphicons-notes-2';
+
     /**
      * The module sections.
      *
@@ -20,17 +27,19 @@ class FormsModule extends Module
      */
     protected $sections = [
         'forms'         => [
-            'buttons' => [
+            'buttons'  => [
                 'new_form' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
                     'href'        => 'admin/forms/choose',
                 ],
             ],
-        ],
-        'entries'       => [
-            'parent' => 'forms',
-            'href'   => 'admin/forms/entries/{request.route.parameters.form}',
+            'sections' => [
+                'entries' => [
+                    'hidden' => true,
+                    'href'   => 'admin/forms/entries/{request.route.parameters.form}',
+                ],
+            ],
         ],
         'assignments'   => [
             'hidden'  => true,
@@ -59,10 +68,4 @@ class FormsModule extends Module
         ],
     ];
 
-    /*
-     * The addon icon.
-     *
-     * @var string
-     */
-    protected $icon = 'glyphicons glyphicons-notes-2';
 }

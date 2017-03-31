@@ -179,4 +179,18 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     {
         return $this->autoresponder;
     }
+
+    /**
+     * Return the model as an array.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        $array = parent::toArray();
+
+        $array['stream'] = $this->getFormEntriesStream()->toArray();
+
+        return $array;
+    }
 }
