@@ -189,7 +189,9 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     {
         $array = parent::toArray();
 
-        $array['stream'] = $this->getFormEntriesStream()->toArray();
+        if ($stream = $this->getFormEntriesStream()) {
+            $array['stream'] = $stream->toArray();
+        }
 
         return $array;
     }
