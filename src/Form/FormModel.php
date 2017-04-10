@@ -51,6 +51,20 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     }
 
     /**
+     * Get the form entries stream ID.
+     *
+     * @return int|null
+     */
+    public function getFormEntriesStreamId()
+    {
+        if (!$stream = $this->getFormEntriesStream()) {
+            return null;
+        }
+
+        return $stream->getId();
+    }
+
+    /**
      * Get the form slug.
      *
      * @return string
@@ -178,21 +192,5 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     public function getAutoresponder()
     {
         return $this->autoresponder;
-    }
-
-    /**
-     * Return the model as an array.
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        $array = parent::toArray();
-
-        if ($stream = $this->getFormEntriesStream()) {
-            $array['stream'] = $stream->toArray();
-        }
-
-        return $array;
     }
 }

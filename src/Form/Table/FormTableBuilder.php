@@ -32,20 +32,6 @@ class FormTableBuilder extends TableBuilder
     ];
 
     /**
-     * The table buttons.
-     *
-     * @var array|string
-     */
-    protected $buttons = [
-        'help',
-        'edit',
-        'entries',
-        'assignments' => [
-            'href' => 'admin/forms/assignments/{entry.stream.id}',
-        ],
-    ];
-
-    /**
      * The table actions.
      *
      * @var array|string

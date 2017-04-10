@@ -40,6 +40,13 @@ interface FormInterface extends EntryInterface
     public function getFormEntriesStream();
 
     /**
+     * Get the form entries stream ID.
+     *
+     * @return int|null
+     */
+    public function getFormEntriesStreamId();
+
+    /**
      * Get the form slug.
      *
      * @return string

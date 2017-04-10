@@ -48,7 +48,7 @@ class FormsModule extends Module
                 'add_field' => [
                     'data-toggle' => 'modal',
                     'data-target' => '#modal',
-                    'href'        => 'admin/forms/assignments/{request.route.parameters.id}/choose',
+                    'href'        => 'admin/forms/assignments/{request.route.parameters.stream}/choose',
                 ],
             ],
         ],
