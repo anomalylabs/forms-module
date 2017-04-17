@@ -35,20 +35,20 @@ class FormsModule extends Module
                 ],
             ],
             'sections' => [
-                'entries' => [
+                'entries'     => [
                     'hidden' => true,
                     'href'   => 'admin/forms/entries/{request.route.parameters.form}',
                 ],
-            ],
-        ],
-        'assignments'   => [
-            'hidden'  => true,
-            'parent'  => 'forms',
-            'buttons' => [
-                'add_field' => [
-                    'data-toggle' => 'modal',
-                    'data-target' => '#modal',
-                    'href'        => 'admin/forms/assignments/{request.route.parameters.stream}/choose',
+                'assignments' => [
+                    'hidden'  => true,
+                    'href'    => 'admin/forms/assignments/{request.route.parameters.stream}',
+                    'buttons' => [
+                        'add_field' => [
+                            'data-toggle' => 'modal',
+                            'data-target' => '#modal',
+                            'href'        => 'admin/forms/assignments/{request.route.parameters.stream}/choose',
+                        ],
+                    ],
                 ],
             ],
         ],
