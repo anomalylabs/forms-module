@@ -1,7 +1,7 @@
 <?php namespace Anomaly\FormsModule\Http\Controller;
 
-use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Http\Controller\PublicController;
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Routing\Redirector;
 
 /**
@@ -18,18 +18,14 @@ class FormsController extends PublicController
     /**
      * Handle the form POST.
      *
-     * @param FormRepositoryInterface $forms
-     * @param Redirector              $redirect
-     * @param                         $form
-     * @return \Illuminate\Http\RedirectResponse|null|\Symfony\Component\HttpFoundation\Response
+     * @param Redirector $redirect
+     * @param            $form
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function handle(FormRepositoryInterface $forms, Redirector $redirect, $form)
+    public function handle(Container $container, Redirector $redirect)
     {
-        $form = $forms->findBySlug($form);
-
-        $handler = $form->getFormHandler();
-        $builder = $handler->builder($form);
+        $builder = $container->make('anomaly.module.forms::forms.' . $this->route->parameter('form'));
 
         $response = $builder
             ->build()
