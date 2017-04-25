@@ -1,5 +1,6 @@
 <?php namespace Anomaly\FormsModule;
 
+use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\FormsModule\Form\FormRepository;
 use Anomaly\FormsModule\Form\Handler\Contract\FormHandlerRepositoryInterface;
@@ -81,6 +82,29 @@ class FormsModuleServiceProvider extends AddonServiceProvider
     {
         $fields->route($this->addon, FieldsController::class);
         $assignments->route($this->addon, AssignmentsController::class);
+    }
+
+    /**
+     * Boot the addon.
+     *
+     * @param FormRepositoryInterface $forms
+     */
+    public function boot(FormRepositoryInterface $forms)
+    {
+        /* @var FormInterface $form */
+        foreach ($forms->all() as $form) {
+
+            $this->app->bind(
+                'anomaly.module.forms::forms.' . $form->getFormSlug(),
+                function () use ($form) {
+
+                    $handler = $form->getFormHandler();
+                    $builder = $handler->builder($form);
+
+                    return $builder;
+                }
+            );
+        }
     }
 
 }
