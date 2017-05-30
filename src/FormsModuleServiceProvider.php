@@ -91,8 +91,16 @@ class FormsModuleServiceProvider extends AddonServiceProvider
      */
     public function boot(FormRepositoryInterface $forms)
     {
+        $forms = $forms->cache(
+            __METHOD__,
+            60,
+            function () use ($forms) {
+                return $forms->all();
+            }
+        );
+        
         /* @var FormInterface $form */
-        foreach ($forms->all() as $form) {
+        foreach ($forms as $form) {
 
             $this->app->bind(
                 'anomaly.module.forms::forms.' . $form->getFormSlug(),
