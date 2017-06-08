@@ -4,9 +4,10 @@ return [
     'forms'         => [
         'name'   => 'Forms',
         'option' => [
-            'read'   => 'Can access forms section.',
-            'write'  => 'Can create and edit forms.',
-            'delete' => 'Can delete forms.',
+            'read'        => 'Can access forms section.',
+            'write'       => 'Can create and edit forms.',
+            'delete'      => 'Can delete forms.',
+            'assignments' => 'Can manage field assignments.',
         ],
     ],
     'notifications' => [
