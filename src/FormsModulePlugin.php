@@ -101,7 +101,7 @@ class FormsModulePlugin extends Plugin
                 $value = implode(', ', $value);
             }
 
-            $output .= "<strong>{$assignment->getFieldName()}: </strong> {$value}<br>";
+            $output .= "<strong>{$assignment->getLabel()}: </strong> {$value}<br>";
         }
 
         return $output;
