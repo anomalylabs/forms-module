@@ -35,7 +35,7 @@ class EntriesController extends AdminController
         }
 
         /* @var FormInterface $form */
-        $form = $forms->find($this->route->getParameter('form'));
+        $form = $forms->find($this->route->parameter('form'));
 
         $stream = $form->getFormEntriesStream();
 
