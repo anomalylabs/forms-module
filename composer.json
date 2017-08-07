@@ -7,18 +7,9 @@
         "streams addon",
         "module"
     ],
-    "homepage": "http://anomaly.is/",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "AnomalyLabs, Inc.",
-            "email": "hello@anomaly.is",
-            "homepage": "http://anomaly.is/",
-            "role": "Owner"
-        }
-    ],
-    "support": {
-        "email": "support@anomaly.is"
+    "require": {
+        "anomaly/streams-platform": "~1.3.0"
     },
     "autoload": {
         "psr-4": {
