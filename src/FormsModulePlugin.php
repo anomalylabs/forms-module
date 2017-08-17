@@ -100,8 +100,11 @@ class FormsModulePlugin extends Plugin
             if (is_array($value)) {
                 $value = implode(', ', $value);
             }
+            
+            if (empty($label = $assignment->getLabel()))
+                $label = $assignment->getFieldName();
 
-            $output .= "<strong>{$assignment->getLabel()}: </strong> {$value}<br>";
+            $output .= "<strong>{$label}: </strong> {$value}<br>";
         }
 
         return $output;
