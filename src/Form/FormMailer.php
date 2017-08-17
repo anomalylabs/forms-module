@@ -81,12 +81,21 @@ class FormMailer
 
         $notification = $form->getNotification();
 
-        /* @var WysiwygFieldType $email */
-        $email = $notification->getFieldType('notification_content');
+        /** @var string $content */
+        $content = $notificationViewPath = $notification->getFieldType('notification_content')->getViewPath();
+
+        /** if no email layout is set, we default to the notification content */
+        if (!is_null($emailLayout = $notification->getFieldValue('notification_email_layout'))) {
+            $path = explode('.', $emailLayout)[0];
+            $data = compact('input', 'form', 'content');
+        } else {
+            $path = $notificationViewPath;
+            $data = compact('input', 'form');
+        }
 
         $this->mailer->send(
-            $email->getViewPath(),
-            compact('input', 'form'),
+            $path,
+            $data,
             function (Message $message) use ($form, $entry, $builder, $notification) {
 
                 $message->cc($form->getNotificationCc());
