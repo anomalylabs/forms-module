@@ -61,7 +61,6 @@ class FormMailer
      * Send the form message.
      *
      * @param FormInterface           $form
-     * @param FormRepositoryInterface $forms
      * @param FormBuilder             $builder
      */
     public function send(FormInterface $form, FormBuilder $builder)
@@ -127,7 +126,6 @@ class FormMailer
     {
         /* @var AssignmentInterface $assignment */
         foreach ($entry->getAssignmentsByFieldType('anomaly.field_type.file') as $assignment) {
-
             /* @var FileInterface $file */
             if ($file = $entry->{$assignment->getFieldSlug()}) {
                 $message->attachData($file->resource()->read(), $file->getName());
