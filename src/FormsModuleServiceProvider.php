@@ -98,19 +98,23 @@ class FormsModuleServiceProvider extends AddonServiceProvider
                 return $forms->all();
             }
         );
-        
+
         /* @var FormInterface $form */
         foreach ($forms as $form) {
 
             $this->app->bind(
                 'anomaly.module.forms::forms.' . $form->getFormSlug(),
                 function () use ($form) {
-
                     $handler = $form->getFormHandler();
                     $builder = $handler->builder($form);
 
                     return $builder;
                 }
+            );
+            
+            $this->app->alias(
+                'anomaly.module.forms::forms.' . $form->getFormSlug(),
+                'forms::' . $form->getFormSlug()
             );
         }
     }
