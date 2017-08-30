@@ -82,6 +82,7 @@ class FormsModulePlugin extends Plugin
      * Return the form input.
      *
      * @param $input
+     * @return string
      */
     public function input($input)
     {
@@ -94,14 +95,17 @@ class FormsModulePlugin extends Plugin
         /* @var EntryInterface $input */
         /* @var AssignmentInterface $assignment */
         foreach ($input->getAssignments() as $assignment) {
-
             $value = $input->getFieldValue($assignment->getFieldSlug());
 
             if (is_array($value)) {
                 $value = implode(', ', $value);
             }
+            
+            if (empty($label = $assignment->getLabel())) {
+                $label = $assignment->getFieldName();
+            }
 
-            $output .= "<strong>{$assignment->getLabel()}: </strong> {$value}<br>";
+            $output .= "<strong>{$label}: </strong> {$value}<br>";
         }
 
         return $output;
