@@ -61,7 +61,6 @@ class FormMailer
      * Send the form message.
      *
      * @param FormInterface           $form
-     * @param FormRepositoryInterface $forms
      * @param FormBuilder             $builder
      */
     public function send(FormInterface $form, FormBuilder $builder)
@@ -81,12 +80,21 @@ class FormMailer
 
         $notification = $form->getNotification();
 
-        /* @var WysiwygFieldType $email */
-        $email = $notification->getFieldType('notification_content');
+        /** @var string $content */
+        $content = $notificationViewPath = $notification->getFieldType('notification_content')->getViewPath();
+
+        /** if no email layout is set, we default to the notification content */
+        if (!is_null($emailLayout = $notification->getFieldValue('notification_email_layout'))) {
+            $path = explode('.', $emailLayout)[0];
+            $data = compact('input', 'form', 'content');
+        } else {
+            $path = $notificationViewPath;
+            $data = compact('input', 'form');
+        }
 
         $this->mailer->send(
-            $email->getViewPath(),
-            compact('input', 'form'),
+            $path,
+            $data,
             function (Message $message) use ($form, $entry, $builder, $notification) {
 
                 $message->cc($form->getNotificationCc());
@@ -118,7 +126,6 @@ class FormMailer
     {
         /* @var AssignmentInterface $assignment */
         foreach ($entry->getAssignmentsByFieldType('anomaly.field_type.file') as $assignment) {
-
             /* @var FileInterface $file */
             if ($file = $entry->{$assignment->getFieldSlug()}) {
                 $message->attachData($file->resource()->read(), $file->getName());
