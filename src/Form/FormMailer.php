@@ -61,13 +61,8 @@ class FormMailer
     /**
      * Send the form message.
      *
-<<<<<<< HEAD
-     * @param FormInterface           $form
-     * @param FormBuilder             $builder
-=======
      * @param FormInterface $form
      * @param FormBuilder   $builder
->>>>>>> 21f6f88... Use layout
      */
     public function send(FormInterface $form, FormBuilder $builder)
     {
@@ -84,24 +79,6 @@ class FormMailer
         /* @var NotificationInterface $notification */
         $notification = $form->getNotification();
 
-<<<<<<< HEAD
-        /** @var string $content */
-        $content = $notificationViewPath = $notification->getFieldType('notification_content')->getViewPath();
-
-        /** if no email layout is set, we default to the notification content */
-        if (!is_null($emailLayout = $notification->getFieldValue('notification_email_layout'))) {
-            $path = explode('.', $emailLayout)[0];
-            $data = compact('input', 'form', 'content');
-        } else {
-            $path = $notificationViewPath;
-            $data = compact('input', 'form');
-        }
-
-        $this->mailer->send(
-            $path,
-            $data,
-            function (Message $message) use ($form, $entry, $builder, $notification) {
-=======
         /* @var WysiwygFieldType $email */
         $email  = $notification->getFieldType('notification_content');
         $layout = $notification->getFieldValue('notification_email_layout');
@@ -112,7 +89,6 @@ class FormMailer
             $layout ?: 'anomaly.module.forms::email',
             compact('input', 'form', 'content'),
             function (Message $message) use ($form, $input, $builder, $notification) {
->>>>>>> 21f6f88... Use layout
 
                 $message->cc($form->getNotificationCc());
                 $message->bcc($form->getNotificationBcc());
