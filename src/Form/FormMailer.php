@@ -47,15 +47,13 @@ class FormMailer
     /**
      * Create a new FormMailer instance.
      *
-     * @param Mailer                  $mailer
-     * @param Value                   $value
-     * @param FormRepositoryInterface $forms
+     * @param Mailer $mailer
+     * @param Value  $value
      */
-    public function __construct(Mailer $mailer, Value $value, FormRepositoryInterface $forms)
+    public function __construct(Mailer $mailer, Value $value)
     {
         $this->mailer = $mailer;
         $this->value  = $value;
-        $this->forms  = $forms;
     }
 
     /**
