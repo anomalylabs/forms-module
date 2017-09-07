@@ -105,7 +105,6 @@ class FormsModuleServiceProvider extends AddonServiceProvider
             $this->app->bind(
                 'anomaly.module.forms::forms.' . $form->getFormSlug(),
                 function () use ($form) {
-
                     $handler = $form->getFormHandler();
                     $builder = $handler->builder($form);
 
