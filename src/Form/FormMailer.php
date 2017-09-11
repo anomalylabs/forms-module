@@ -84,7 +84,7 @@ class FormMailer
         $content = $email->getViewPath();
 
         $this->mailer->send(
-            $layout ?: 'anomaly.module.forms::email',
+            $layout ? pathinfo($layout, PATHINFO_FILENAME) : 'anomaly.module.forms::email',
             compact('input', 'form', 'content'),
             function (Message $message) use ($form, $input, $builder, $notification) {
 
