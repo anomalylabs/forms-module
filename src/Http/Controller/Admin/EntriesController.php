@@ -71,7 +71,15 @@ class EntriesController extends AdminController
         return $table
             ->setModel($stream->getEntryModel())
             ->setFilters($form->getFormViewOptions())
-            ->setColumns(array_merge(['entry.created_at'], $form->getFormViewOptions()))
+            ->setColumns(
+                array_merge(
+                    ['entry.created_at_datetime'],
+                    array_diff(
+                        $form->getFormViewOptions(),
+                        ['created_at', 'updated_at', 'created_by', 'updated_by']
+                    )
+                )
+            )
             ->render();
     }
 
