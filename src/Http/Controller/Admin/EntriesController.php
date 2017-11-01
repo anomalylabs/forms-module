@@ -22,7 +22,7 @@ class EntriesController extends AdminController
     /**
      * Create a new EntriesController instance.
      *
-     * @param FormsModule             $module
+     * @param FormsModule $module
      * @param FormRepositoryInterface $forms
      */
     public function __construct(FormsModule $module, FormRepositoryInterface $forms)
@@ -51,9 +51,9 @@ class EntriesController extends AdminController
     }
 
     /**
-     * @param EntryTableBuilder         $table
+     * @param EntryTableBuilder $table
      * @param StreamRepositoryInterface $streams
-     * @param FormRepositoryInterface   $forms
+     * @param FormRepositoryInterface $forms
      * @param                           $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -73,7 +73,11 @@ class EntriesController extends AdminController
             ->setFilters($form->getFormViewOptions())
             ->setColumns(
                 array_merge(
-                    ['entry.created_at_datetime'],
+                    [
+                        'entry.created_at_datetime' => [
+                            'field' => 'created_at',
+                        ],
+                    ],
                     array_diff(
                         $form->getFormViewOptions(),
                         ['created_at', 'updated_at', 'created_by', 'updated_by']
@@ -86,7 +90,7 @@ class EntriesController extends AdminController
     /**
      * Return the readonly view for an entry.
      *
-     * @param FormBuilder             $generic
+     * @param FormBuilder $generic
      * @param FormRepositoryInterface $forms
      * @param                         $form
      * @param                         $id
