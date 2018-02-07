@@ -96,18 +96,12 @@ class FormsModulePlugin extends Plugin
         foreach ($input->getAssignments() as $assignment) {
 
             $value = $input->getFieldValue($assignment->getFieldSlug());
-            
-            if (is_object($value)) {
-                $value = '{object}';
-            }
 
             if (is_array($value)) {
                 $value = implode(', ', $value);
             }
 
-            if (!$label = $assignment->getLabel()) {
-                $label = $assignment->getFieldName();
-            }
+            $label = $assignment->getFieldName();
 
             $output .= "<strong>{$label}: </strong> {$value}<br>";
         }
