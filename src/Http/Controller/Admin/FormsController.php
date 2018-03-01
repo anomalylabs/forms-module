@@ -72,7 +72,7 @@ class FormsController extends AdminController
     public function edit(FormFormBuilder $form, FormRepositoryInterface $forms, $id)
     {
         /* @var FormInterface $entry */
-        $entry = $forms->find($id)->getForm;
+        $entry = $forms->find($id);
 
         /* @var FormHandlerExtensionInterface $handler */
         $handler = $entry->getFormHandler();
