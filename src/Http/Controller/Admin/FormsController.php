@@ -1,7 +1,9 @@
 <?php namespace Anomaly\FormsModule\Http\Controller\Admin;
 
+use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\FormsModule\Form\Form\FormFormBuilder;
+use Anomaly\FormsModule\Form\Handler\Contract\FormHandlerExtensionInterface;
 use Anomaly\FormsModule\Form\Handler\Contract\FormHandlerRepositoryInterface;
 use Anomaly\FormsModule\Form\Table\FormTableBuilder;
 use Anomaly\Streams\Platform\Addon\Extension\ExtensionCollection;
@@ -49,19 +51,37 @@ class FormsController extends AdminController
      */
     public function create(FormFormBuilder $form, FormHandlerRepositoryInterface $formHandlers)
     {
-        return $form->setFormHandler($formHandlers->get($_GET['form_handler']))->render();
+        /* @var FormHandlerExtensionInterface $handler */
+        $handler = $formHandlers->get($_GET['form_handler']);
+
+        $form->setFormHandler($handler);
+
+        $handler->integrate($form);
+
+        return $form->render();
     }
 
     /**
      * Edit an existing entry.
      *
-     * @param FormFormBuilder $form
-     * @param                 $id
+     * @param FormFormBuilder         $form
+     * @param FormRepositoryInterface $forms
+     * @param                         $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(FormFormBuilder $form, $id)
+    public function edit(FormFormBuilder $form, FormRepositoryInterface $forms, $id)
     {
-        return $form->render($id);
+        /* @var FormInterface $entry */
+        $entry = $forms->find($id)->getForm;
+
+        /* @var FormHandlerExtensionInterface $handler */
+        $handler = $entry->getFormHandler();
+
+        $form->setFormHandler($handler);
+
+        $handler->integrate($form);
+
+        return $form->render($entry);
     }
 
     /**
