@@ -75,6 +75,26 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     }
 
     /**
+     * Get the form name.
+     *
+     * @return string
+     */
+    public function getFormName()
+    {
+        return $this->form_name;
+    }
+
+    /**
+     * Get the form description.
+     *
+     * @return string
+     */
+    public function getFormDescription()
+    {
+        return $this->form_description;
+    }
+
+    /**
      * Get the related actions.
      *
      * @return EntryCollection

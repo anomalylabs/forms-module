@@ -2,6 +2,8 @@
 
 use Anomaly\FormsModule\Form\Command\CreateFormEntriesStream;
 use Anomaly\FormsModule\Form\Command\DeleteFormEntriesStream;
+use Anomaly\FormsModule\Form\Command\UpdateFormEntriesStream;
+use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Entry\EntryObserver;
 
@@ -19,7 +21,7 @@ class FormObserver extends EntryObserver
     /**
      * Fired after the entry is created.
      *
-     * @param EntryInterface $entry
+     * @param EntryInterface|FormInterface $entry
      */
     public function created(EntryInterface $entry)
     {
@@ -29,9 +31,21 @@ class FormObserver extends EntryObserver
     }
 
     /**
+     * Fired after the entry is updated.
+     *
+     * @param EntryInterface|FormInterface $entry
+     */
+    public function updated(EntryInterface $entry)
+    {
+        $this->dispatch(new UpdateFormEntriesStream($entry));
+
+        parent::updated($entry);
+    }
+
+    /**
      * Fired after the entry is deleted.
      *
-     * @param EntryInterface $entry
+     * @param EntryInterface|FormInterface $entry
      */
     public function deleted(EntryInterface $entry)
     {

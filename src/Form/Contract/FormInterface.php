@@ -54,6 +54,20 @@ interface FormInterface extends EntryInterface
     public function getFormSlug();
 
     /**
+     * Get the form name.
+     *
+     * @return string
+     */
+    public function getFormName();
+
+    /**
+     * Get the form description.
+     *
+     * @return string
+     */
+    public function getFormDescription();
+
+    /**
      * Get the send notification flag.
      *
      * @return array
