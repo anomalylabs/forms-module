@@ -1,7 +1,7 @@
 <?php namespace Anomaly\FormsModule\Form\Handler\Contract;
 
 use Anomaly\FormsModule\Form\Contract\FormInterface;
-use Anomaly\Streams\Platform\Ui\Form\Multiple\MultipleFormBuilder;
+use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 
 /**
  * Interface FormHandlerExtensionInterface
@@ -26,7 +26,7 @@ interface FormHandlerExtensionInterface
      * Integrate the form handler's services
      * with the primary form's builder instance.
      *
-     * @param MultipleFormBuilder $builder
+     * @param FormBuilder $builder
      */
-    public function integrate(MultipleFormBuilder $builder);
+    public function integrate(FormBuilder $builder);
 }
