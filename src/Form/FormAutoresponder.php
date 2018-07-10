@@ -8,6 +8,7 @@ use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Support\Value;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\WysiwygFieldType\WysiwygFieldType;
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Mail\Message;
 
@@ -37,6 +38,13 @@ class FormAutoresponder
     protected $value;
 
     /**
+     * The config repository.
+     *
+     * @var Repository
+     */
+    protected $config;
+
+    /**
      * The mailer utility.
      *
      * @var Mailer
@@ -47,12 +55,14 @@ class FormAutoresponder
      * Create a new FormAutoresponder instance.
      *
      * @param Mailer $mailer
+     * @param Repository $config
      * @param Value $value
      * @param FormRepositoryInterface $forms
      */
-    public function __construct(Mailer $mailer, Value $value, FormRepositoryInterface $forms)
+    public function __construct(Mailer $mailer, Repository $config, Value $value, FormRepositoryInterface $forms)
     {
         $this->mailer = $mailer;
+        $this->condig = $config;
         $this->value  = $value;
         $this->forms  = $forms;
     }
@@ -120,21 +130,17 @@ class FormAutoresponder
          */
         $builder->fire('attaching_files', compact('message', 'entry', 'builder'));
 
-        /* @var AssignmentInterface $assignment */
-        foreach ($entry->getAssignmentsByFieldType('anomaly.field_type.file') as $assignment) {
+        $supported = $this->config->get('anomaly.module.forms::attachments.supported', []);
 
-            /* @var FileInterface $file */
-            if ($file = $entry->{$assignment->getFieldSlug()}) {
-                $message->attachData($file->resource()->read(), $file->getName());
-            }
-        }
-        
-        /* @var AssignmentInterface $assignment */
-        foreach ($entry->getAssignmentsByFieldType('anomaly.field_type.upload') as $assignment) {
+        foreach ($supported as $type) {
 
-            /* @var FileInterface $file */
-            if ($file = $entry->{$assignment->getFieldSlug()}) {
-                $message->attachData($file->resource()->read(), $file->getName());
+            /* @var AssignmentInterface $assignment */
+            foreach ($entry->getAssignmentsByFieldType($type) as $assignment) {
+
+                /* @var FileInterface $file */
+                if ($file = $entry->{$assignment->getFieldSlug()}) {
+                    $message->attachData($file->resource()->read(), $file->getName());
+                }
             }
         }
     }
