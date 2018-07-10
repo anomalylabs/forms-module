@@ -128,5 +128,14 @@ class FormAutoresponder
                 $message->attachData($file->resource()->read(), $file->getName());
             }
         }
+        
+        /* @var AssignmentInterface $assignment */
+        foreach ($entry->getAssignmentsByFieldType('anomaly.field_type.upload') as $assignment) {
+
+            /* @var FileInterface $file */
+            if ($file = $entry->{$assignment->getFieldSlug()}) {
+                $message->attachData($file->resource()->read(), $file->getName());
+            }
+        }
     }
 }
