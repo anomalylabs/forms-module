@@ -46,8 +46,8 @@ class FormAutoresponder
     /**
      * Create a new FormAutoresponder instance.
      *
-     * @param Mailer                  $mailer
-     * @param Value                   $value
+     * @param Mailer $mailer
+     * @param Value $value
      * @param FormRepositoryInterface $forms
      */
     public function __construct(Mailer $mailer, Value $value, FormRepositoryInterface $forms)
@@ -60,9 +60,9 @@ class FormAutoresponder
     /**
      * Send the form message.
      *
-     * @param FormInterface           $form
+     * @param FormInterface $form
      * @param FormRepositoryInterface $forms
-     * @param FormBuilder             $builder
+     * @param FormBuilder $builder
      */
     public function send(FormInterface $form, FormBuilder $builder)
     {
@@ -99,7 +99,7 @@ class FormAutoresponder
                     $this->value->make($notification->getNotificationFromName(), $entry, 'input')
                 );
 
-                $this->attachFiles($message, $entry);
+                $this->attachFiles($message, $entry, $builder);
             }
         );
     }
@@ -107,11 +107,19 @@ class FormAutoresponder
     /**
      * Attach file uploads.
      *
-     * @param Message        $message
+     * @param Message $message
      * @param EntryInterface $entry
+     * @param FormBuilder $builder
      */
-    protected function attachFiles(Message $message, EntryInterface $entry)
+    protected function attachFiles(Message $message, EntryInterface $entry, FormBuilder $builder)
     {
+
+        /**
+         * Fire a callback allowing the form builder
+         * to manage it's attachments dynamically.
+         */
+        $builder->fire('attaching_files', compact('message', 'entry', 'builder'));
+
         /* @var AssignmentInterface $assignment */
         foreach ($entry->getAssignmentsByFieldType('anomaly.field_type.file') as $assignment) {
 
