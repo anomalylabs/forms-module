@@ -62,7 +62,7 @@ class FormAutoresponder
     public function __construct(Mailer $mailer, Repository $config, Value $value, FormRepositoryInterface $forms)
     {
         $this->mailer = $mailer;
-        $this->condig = $config;
+        $this->config = $config;
         $this->value  = $value;
         $this->forms  = $forms;
     }
