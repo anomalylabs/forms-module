@@ -132,6 +132,9 @@ class FormMailer
             /* @var AssignmentInterface $assignment */
             foreach ($entry->getAssignmentsByFieldType($type) as $assignment) {
 
+                // Load the relation.
+                $entry->load(str_humanize($assignment->getFieldSlug()));
+
                 /* @var FileInterface $file */
                 if ($file = $entry->{$assignment->getFieldSlug()}) {
                     $message->attachData($file->resource()->read(), $file->getName());

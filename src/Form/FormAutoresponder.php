@@ -54,9 +54,9 @@ class FormAutoresponder
     /**
      * Create a new FormAutoresponder instance.
      *
-     * @param Mailer $mailer
-     * @param Repository $config
-     * @param Value $value
+     * @param Mailer                  $mailer
+     * @param Repository              $config
+     * @param Value                   $value
      * @param FormRepositoryInterface $forms
      */
     public function __construct(Mailer $mailer, Repository $config, Value $value, FormRepositoryInterface $forms)
@@ -70,9 +70,9 @@ class FormAutoresponder
     /**
      * Send the form message.
      *
-     * @param FormInterface $form
+     * @param FormInterface           $form
      * @param FormRepositoryInterface $forms
-     * @param FormBuilder $builder
+     * @param FormBuilder             $builder
      */
     public function send(FormInterface $form, FormBuilder $builder)
     {
@@ -117,9 +117,9 @@ class FormAutoresponder
     /**
      * Attach file uploads.
      *
-     * @param Message $message
+     * @param Message        $message
      * @param EntryInterface $entry
-     * @param FormBuilder $builder
+     * @param FormBuilder    $builder
      */
     protected function attachFiles(Message $message, EntryInterface $entry, FormBuilder $builder)
     {
@@ -136,6 +136,9 @@ class FormAutoresponder
 
             /* @var AssignmentInterface $assignment */
             foreach ($entry->getAssignmentsByFieldType($type) as $assignment) {
+
+                // Load the relation.
+                $entry->load(str_humanize($assignment->getFieldSlug()));
 
                 /* @var FileInterface $file */
                 if ($file = $entry->{$assignment->getFieldSlug()}) {
