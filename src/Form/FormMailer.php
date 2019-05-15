@@ -112,7 +112,9 @@ class FormMailer
                     $this->value->make($notification->getNotificationFromName(), $entry, 'input')
                 );
 
-                $this->attachFiles($message, $entry);
+                if ($form->shouldSendAttachments()) {
+                    $this->attachFiles($message, $entry);
+                }
             }
         );
     }

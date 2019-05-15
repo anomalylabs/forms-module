@@ -75,6 +75,13 @@ interface FormInterface extends EntryInterface
     public function shouldSendNotification();
 
     /**
+     * Get the notification's include attachments flag.
+     *
+     * @return bool
+     */
+    public function shouldSendAttachments();
+
+    /**
      * Get the notification send to emails.
      *
      * @return array

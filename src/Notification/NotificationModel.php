@@ -63,4 +63,14 @@ class NotificationModel extends FormsNotificationsEntryModel implements Notifica
     {
         return $this->notification_subject;
     }
+
+    /**
+     * Return the include attachments flag.
+     *
+     * @return bool
+     */
+    public function shouldIncludeAttachments()
+    {
+        return $this->include_attachments;
+    }
 }

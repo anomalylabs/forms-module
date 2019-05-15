@@ -145,6 +145,20 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
     }
 
     /**
+     * Get the notification's include attachments flag.
+     *
+     * @return bool
+     */
+    public function shouldSendAttachments()
+    {
+        if (!$notification = $this->getNotification()) {
+            return false;
+        }
+
+        return $notification->shouldIncludeAttachments();
+    }
+
+    /**
      * Get the notification send to emails.
      *
      * @return array

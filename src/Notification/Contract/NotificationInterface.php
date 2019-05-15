@@ -47,4 +47,11 @@ interface NotificationInterface extends EntryInterface
      * @return string
      */
     public function getNotificationSubject();
+
+    /**
+     * Return the include attachments flag.
+     *
+     * @return bool
+     */
+    public function shouldIncludeAttachments();
 }
