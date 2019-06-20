@@ -115,6 +115,8 @@ class FormMailer
                 if ($form->shouldSendAttachments()) {
                     $this->attachFiles($message, $entry);
                 }
+                
+                $builder->fire('sending_notification', compact('message', 'form', 'entry', 'builder', 'notification'));
             }
         );
     }
