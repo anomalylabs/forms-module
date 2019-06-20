@@ -54,9 +54,9 @@ class FormAutoresponder
     /**
      * Create a new FormAutoresponder instance.
      *
-     * @param Mailer                  $mailer
-     * @param Repository              $config
-     * @param Value                   $value
+     * @param Mailer $mailer
+     * @param Repository $config
+     * @param Value $value
      * @param FormRepositoryInterface $forms
      */
     public function __construct(Mailer $mailer, Repository $config, Value $value, FormRepositoryInterface $forms)
@@ -70,9 +70,9 @@ class FormAutoresponder
     /**
      * Send the form message.
      *
-     * @param FormInterface           $form
+     * @param FormInterface $form
      * @param FormRepositoryInterface $forms
-     * @param FormBuilder             $builder
+     * @param FormBuilder $builder
      */
     public function send(FormInterface $form, FormBuilder $builder)
     {
@@ -109,7 +109,11 @@ class FormAutoresponder
                     $this->value->make($notification->getNotificationFromName(), $entry, 'input')
                 );
 
-                $this->attachFiles($message, $entry, $builder);
+                if ($form->shouldSendAttachments()) {
+                    $this->attachFiles($message, $entry);
+                }
+                
+                $builder->fire('sending_autoresponse', compact('message', 'form', 'entry', 'builder', 'notification'));
             }
         );
     }
@@ -117,19 +121,11 @@ class FormAutoresponder
     /**
      * Attach file uploads.
      *
-     * @param Message        $message
+     * @param Message $message
      * @param EntryInterface $entry
-     * @param FormBuilder    $builder
      */
-    protected function attachFiles(Message $message, EntryInterface $entry, FormBuilder $builder)
+    protected function attachFiles(Message $message, EntryInterface $entry)
     {
-
-        /**
-         * Fire a callback allowing the form builder
-         * to manage it's attachments dynamically.
-         */
-        $builder->fire('attaching_files', compact('message', 'entry', 'builder'));
-
         $supported = $this->config->get('anomaly.module.forms::attachments.supported', []);
 
         foreach ($supported as $type) {
