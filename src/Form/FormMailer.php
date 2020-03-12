@@ -137,7 +137,7 @@ class FormMailer
             foreach ($entry->getAssignmentsByFieldType($type) as $assignment) {
 
                 // Load the relation.
-                $entry->load(str_humanize($assignment->getFieldSlug()));
+                $entry->load(camel_case($assignment->getFieldSlug()));
 
                 /* @var FileInterface $file */
                 if ($file = $entry->{$assignment->getFieldSlug()}) {
