@@ -25,7 +25,7 @@ class FormObserver extends EntryObserver
      */
     public function created(EntryInterface $entry)
     {
-        $this->dispatch(new CreateFormEntriesStream($entry));
+        dispatch_sync(new CreateFormEntriesStream($entry));
 
         parent::created($entry);
     }
@@ -37,7 +37,7 @@ class FormObserver extends EntryObserver
      */
     public function updated(EntryInterface $entry)
     {
-        $this->dispatch(new UpdateFormEntriesStream($entry));
+        dispatch_sync(new UpdateFormEntriesStream($entry));
 
         parent::updated($entry);
     }
@@ -49,7 +49,7 @@ class FormObserver extends EntryObserver
      */
     public function deleted(EntryInterface $entry)
     {
-        $this->dispatch(new DeleteFormEntriesStream($entry));
+        dispatch_sync(new DeleteFormEntriesStream($entry));
 
         parent::created($entry);
     }

@@ -47,7 +47,7 @@ class FormModel extends FormsFormsEntryModel implements FormInterface
      */
     public function getFormEntriesStream()
     {
-        return $this->dispatch(new GetFormEntriesStream($this));
+        return dispatch_sync(new GetFormEntriesStream($this));
     }
 
     /**

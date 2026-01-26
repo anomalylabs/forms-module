@@ -6,6 +6,7 @@ use Anomaly\Streams\Platform\Assignment\Contract\AssignmentInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Support\Decorator;
 use Anomaly\Streams\Platform\Support\Presenter;
+use Twig\TwigFunction;
 
 /**
  * Class FormsModulePlugin
@@ -52,9 +53,9 @@ class FormsModulePlugin extends Plugin
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('forms_get', [$this, 'get'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('forms_input', [$this, 'input'], ['is_safe' => ['html']]),
-            new \Twig_SimpleFunction('forms_display', [$this, 'get'], ['is_safe' => ['html']]),
+            new TwigFunction('forms_get', [$this, 'get'], ['is_safe' => ['html']]),
+            new TwigFunction('forms_input', [$this, 'input'], ['is_safe' => ['html']]),
+            new TwigFunction('forms_display', [$this, 'get'], ['is_safe' => ['html']]),
         ];
     }
 
