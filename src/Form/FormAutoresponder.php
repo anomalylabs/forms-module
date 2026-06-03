@@ -112,7 +112,7 @@ class FormAutoresponder
                 if ($form->shouldSendAttachments()) {
                     $this->attachFiles($message, $entry);
                 }
-                
+
                 $builder->fire('sending_autoresponse', compact('message', 'form', 'entry', 'builder', 'notification'));
             }
         );
@@ -138,7 +138,11 @@ class FormAutoresponder
 
                 /* @var FileInterface $file */
                 if ($file = $entry->{$assignment->getFieldSlug()}) {
-                    $message->attachData($file->resource()->read(), $file->getName());
+                    $message->attachData(
+                        $file->filesystem()->read($file->path()),
+                        $file->getName(),
+                        ['mime' => $file->getMimeType()]
+                    );
                 }
             }
         }
