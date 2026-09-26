@@ -5,7 +5,6 @@ use Anomaly\FormsModule\Form\Contract\FormInterface;
 use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Assignment\Contract\AssignmentInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
-use Anomaly\Streams\Platform\Support\Value;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
 use Anomaly\WysiwygFieldType\WysiwygFieldType;
 use Illuminate\Contracts\Config\Repository;
@@ -30,9 +29,9 @@ class FormMailer
     protected $forms;
 
     /**
-     * The value utility.
+     * The notification value resolver.
      *
-     * @var Value
+     * @var NotificationValue
      */
     protected $value;
 
@@ -55,10 +54,10 @@ class FormMailer
      *
      * @param Mailer                  $mailer
      * @param Repository              $config
-     * @param Value                   $value
+     * @param NotificationValue       $value
      * @param FormRepositoryInterface $forms
      */
-    public function __construct(Mailer $mailer, Repository $config, Value $value, FormRepositoryInterface $forms)
+    public function __construct(Mailer $mailer, Repository $config, NotificationValue $value, FormRepositoryInterface $forms)
     {
         $this->mailer = $mailer;
         $this->config = $config;
@@ -101,15 +100,15 @@ class FormMailer
                 $message->cc($form->getNotificationCc());
                 $message->bcc($form->getNotificationBcc());
                 $message->to($form->getNotificationSendTo());
-                $message->subject($this->value->make($notification->getNotificationSubject(), $entry, 'input'));
-                $message->sender($this->value->make($notification->getNotificationFromEmail(), $entry, 'input'));
+                $message->subject($this->value->make($notification->getNotificationSubject(), $entry));
+                $message->sender($this->value->make($notification->getNotificationFromEmail(), $entry));
                 $message->replyTo(
-                    $this->value->make($notification->getNotificationReplyToEmail(), $entry, 'input'),
-                    $this->value->make($notification->getNotificationReplyToName(), $entry, 'input')
+                    $this->value->make($notification->getNotificationReplyToEmail(), $entry),
+                    $this->value->make($notification->getNotificationReplyToName(), $entry)
                 );
                 $message->from(
-                    $this->value->make($notification->getNotificationFromEmail(), $entry, 'input'),
-                    $this->value->make($notification->getNotificationFromName(), $entry, 'input')
+                    $this->value->make($notification->getNotificationFromEmail(), $entry),
+                    $this->value->make($notification->getNotificationFromName(), $entry)
                 );
 
                 if ($form->shouldSendAttachments()) {
