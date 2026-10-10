@@ -6,7 +6,7 @@ use Anomaly\FormsModule\Form\Contract\FormRepositoryInterface;
 use Anomaly\Streams\Platform\Assignment\Contract\AssignmentInterface;
 use Anomaly\Streams\Platform\Entry\Contract\EntryInterface;
 use Anomaly\Streams\Platform\Ui\Form\FormBuilder;
-use Anomaly\WysiwygFieldType\WysiwygFieldType;
+use Anomaly\EditorFieldType\EditorFieldType;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Mail\Message;
@@ -89,7 +89,7 @@ class FormMailer
 
         $notification = $form->getNotification();
 
-        /* @var WysiwygFieldType $email */
+        /* @var EditorFieldType $email */
         $email = $notification->getFieldType('notification_content');
 
         $this->mailer->send(

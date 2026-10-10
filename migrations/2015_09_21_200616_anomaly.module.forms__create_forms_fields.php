@@ -56,8 +56,9 @@ class AnomalyModuleFormsCreateFormsFields extends Migration
             ],
         ],
         'notification_content'        => [
-            'type'   => 'anomaly.field_type.wysiwyg',
+            'type'   => 'anomaly.field_type.editor',
             'config' => [
+                'mode'          => 'twig',
                 'default_value' => '<h3>{{ form.form_name }}</h3><p><a href="{{ url_previous() }}">{{ url_previous() }}</a></p><hr><p><em>{{ form.form_description }}</em><br>{{ forms_input(input)|raw }}</p>',
             ],
         ],
